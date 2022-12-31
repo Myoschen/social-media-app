@@ -6,7 +6,7 @@ import Layout from 'components/layout';
 import PostDetail from 'components/post-detail';
 import Profile from 'components/profile';
 import AllUsers from 'components/users';
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 export const enum ROUTES {
   ROOT = '/',
@@ -22,7 +22,7 @@ export const enum ROUTES {
 export const router = createBrowserRouter([
   {
     path: ROUTES.ROOT,
-    element: 'public root',
+    element: <Navigate to={ROUTES.LOGIN} />,
   },
   {
     path: ROUTES.LOGIN,
