@@ -1,6 +1,14 @@
 # Social Media
 
-> Build a Social Media APP with React, Firebase, Chakra UI.
+`In Progress`
+
+Build a Social Media APP with React, Firebase, Chakra UI.
+
+## Todo
+
+- [ ] add landing page.
+- [ ] fix firebase database and storage rules.
+- [ ] redesign the overall style of the website.
 
 ## Reference
 
