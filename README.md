@@ -7,6 +7,8 @@ Build a Social Media APP with React, Firebase, Chakra UI.
 ## Todo
 
 - [ ] add landing page.
+- [ ] switch light/dark mode.
+- [ ] support multiple languages (i18n).
 - [ ] fix firebase database and storage rules.
 - [ ] redesign the overall style of the website.
 
