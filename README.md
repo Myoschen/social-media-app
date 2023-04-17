@@ -35,6 +35,11 @@
 
 Build a social media app with React, Firebase, Chakra UI.
 
+> test account
+> |      Account     | Password |
+> | ---------------- | -------- |
+> | ryan@example.com | 12345678 |
+
 > reference: [Build and Deploy a Full Stack Social Media App (ReactJS + Firebase v9 + Chakra UI)](https://www.youtube.com/watch?v=ELyjd5OXZKI)
 
 ## :rocket: Technologies ##
