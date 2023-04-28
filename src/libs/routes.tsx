@@ -1,11 +1,11 @@
-import Login from 'components/auth/Login';
-import Register from 'components/auth/Register';
-import Error from 'components/common/Error';
-import Dashboard from 'components/dashboard';
-import Layout from 'components/layout';
-import PostDetail from 'components/post-detail';
-import Profile from 'components/profile';
-import AllUsers from 'components/users';
+import Login from '@/components/auth/Login';
+import Register from '@/components/auth/Register';
+import Error from '@/components/common/Error';
+import Dashboard from '@/components/dashboard';
+import Layout from '@/components/layout';
+import PostDetail from '@/components/post-detail';
+import Profile from '@/components/profile';
+import AllUsers from '@/components/users';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 export const enum ROUTES {
