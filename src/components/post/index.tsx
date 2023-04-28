@@ -1,4 +1,4 @@
-import { IPost } from 'lib/types';
+import { IPost } from '@/libs/types';
 import { Box, Text } from '@chakra-ui/react';
 import Header from './Header';
 import Actions from './Actions';

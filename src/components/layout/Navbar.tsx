@@ -1,5 +1,5 @@
-import { useLogout } from 'hooks/auth';
-import { ROUTES } from 'lib/routes';
+import { useLogout } from '@/hooks/auth';
+import { ROUTES } from '../../libs/routes';
 import { Link as RouteLink } from 'react-router-dom';
 import { Button, Container, Flex, HStack, Link } from '@chakra-ui/react';
 

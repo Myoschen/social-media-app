@@ -1,8 +1,8 @@
-import { useAuth } from 'hooks/auth';
-import { useQueryComments } from 'hooks/comments';
-import { useDeletePost, useToggleLike } from 'hooks/posts';
-import { ROUTES } from 'lib/routes';
-import { IPost } from 'lib/types';
+import { useAuth } from '@/hooks/auth';
+import { useQueryComments } from '@/hooks/comments';
+import { useDeletePost, useToggleLike } from '@/hooks/posts';
+import { ROUTES } from '../../libs/routes';
+import { IPost } from '../../libs/types';
 import {
   FaComment,
   FaHeart,

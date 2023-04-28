@@ -1,7 +1,7 @@
-import { useUpdateProfile } from 'hooks/user';
-import { IUser } from 'lib/types';
+import { useUpdateProfile } from '@/hooks/user';
+import { IUser } from '../../libs/types';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { ProfileSchema } from 'utils/form-validate';
+import { ProfileSchema } from '@/utils/form-validate';
 import { InferType } from 'yup';
 import {
   Avatar,

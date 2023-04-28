@@ -1,5 +1,5 @@
-import Post from 'components/post';
-import { useQueryPost } from 'hooks/posts';
+import Post from '@/components/post';
+import { useQueryPost } from '@/hooks/posts';
 import { useParams } from 'react-router-dom';
 import { VStack } from '@chakra-ui/react';
 import CommentList from './CommentList';

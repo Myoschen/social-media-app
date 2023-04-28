@@ -1,4 +1,4 @@
-import { useQueryUsers } from 'hooks/user';
+import { useQueryUsers } from '@/hooks/user';
 import { SimpleGrid, Text } from '@chakra-ui/react';
 import User from './User';
 

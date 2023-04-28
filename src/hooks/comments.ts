@@ -6,8 +6,8 @@ import {
   setDoc,
   where,
 } from 'firebase/firestore';
-import { commentCol } from 'lib/firebase';
-import { IComment } from 'lib/types';
+import { commentCol } from '../libs/firebase';
+import { IComment } from '../libs/types';
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useToast } from '@chakra-ui/react';

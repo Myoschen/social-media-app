@@ -1,7 +1,7 @@
 import { Button, Tag, VStack } from '@chakra-ui/react';
-import Avatar from 'components/common/Avatar';
-import { ROUTES } from 'lib/routes';
-import { IUser } from 'lib/types';
+import Avatar from '@/components/common/Avatar';
+import { ROUTES } from '@/libs/routes';
+import { IUser } from '@/libs/types';
 import { Link } from 'react-router-dom';
 
 interface UserProps {

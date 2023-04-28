@@ -1,8 +1,8 @@
-import { useRegister } from 'hooks/auth';
-import { ROUTES } from 'lib/routes';
+import { useRegister } from '@/hooks/auth';
+import { ROUTES } from '../../libs/routes';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link as RouteLink } from 'react-router-dom';
-import { RegisterSchema } from 'utils/form-validate';
+import { RegisterSchema } from '@/utils/form-validate';
 import { InferType } from 'yup';
 import {
   Box,

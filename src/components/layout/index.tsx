@@ -1,6 +1,6 @@
 import { Box, Container, Flex } from '@chakra-ui/react';
-import { useAuth } from 'hooks/auth';
-import { ROUTES } from 'lib/routes';
+import { useAuth } from '@/hooks/auth';
+import { ROUTES } from '@/libs/routes';
 import { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';

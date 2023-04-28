@@ -1,12 +1,12 @@
-import Avatar from 'components/common/Avatar';
-import UsernameLink from 'components/common/UsernameLink';
-import { IComment } from 'lib/types';
+import Avatar from '@/components/common/Avatar';
+import UsernameLink from '@/components/common/UsernameLink';
+import { IComment } from '@/libs/types';
 import { Box, Flex, IconButton, Spacer, Text } from '@chakra-ui/react';
-import { useQueryUser } from 'hooks/user';
+import { useQueryUser } from '@/hooks/user';
 import { formatDistanceToNow } from 'date-fns';
 import { FaTrash } from 'react-icons/fa';
-import { useDeleteComment } from 'hooks/comments';
-import { useAuth } from 'hooks/auth';
+import { useDeleteComment } from '@/hooks/comments';
+import { useAuth } from '@/hooks/auth';
 
 interface CommentProps {
   comment: IComment;

@@ -1,4 +1,4 @@
-import { useQueryPosts } from 'hooks/posts';
+import { useQueryPosts } from '@/hooks/posts';
 import NewPost from './NewPost';
 import PostList from './PostList';
 

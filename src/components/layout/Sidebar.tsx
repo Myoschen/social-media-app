@@ -1,6 +1,6 @@
-import Avatar from 'components/common/Avatar';
-import { useAuth } from 'hooks/auth';
-import { ROUTES } from 'lib/routes';
+import Avatar from '@/components/common/Avatar';
+import { useAuth } from '@/hooks/auth';
+import { ROUTES } from '../../libs/routes';
 import { Link } from 'react-router-dom';
 import { Box, Button, Divider, Tag, VStack } from '@chakra-ui/react';
 

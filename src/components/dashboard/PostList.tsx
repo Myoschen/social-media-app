@@ -1,5 +1,5 @@
-import Post from 'components/post';
-import { IPost } from 'lib/types';
+import Post from '@/components/post';
+import { IPost } from '@/libs/types';
 import { Text, VStack } from '@chakra-ui/react';
 
 interface PostListProps {

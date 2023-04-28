@@ -10,8 +10,8 @@ import {
   updateDoc,
   where,
 } from 'firebase/firestore';
-import { commentCol, postCol } from 'lib/firebase';
-import { IPost } from 'lib/types';
+import { commentCol, postCol } from '../libs/firebase';
+import { IPost } from '../libs/types';
 import { useState } from 'react';
 import {
   useCollectionData,
@@ -20,7 +20,7 @@ import {
 import { useLocation, useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import { useToast } from '@chakra-ui/react';
-import { ROUTES } from 'lib/routes';
+import { ROUTES } from '../libs/routes';
 
 export function useAddPost() {
   const [isLoading, setLoading] = useState(false);

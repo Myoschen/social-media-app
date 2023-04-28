@@ -1,8 +1,8 @@
-import { useAuth } from 'hooks/auth';
-import { useAddPost } from 'hooks/posts';
+import { useAuth } from '@/hooks/auth';
+import { useAddPost } from '@/hooks/posts';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import TextareaAutosize from 'react-textarea-autosize';
-import { PostSchema } from 'utils/form-validate';
+import { PostSchema } from '@/utils/form-validate';
 import { InferType } from 'yup';
 import { Box, Button, Heading, HStack, Textarea } from '@chakra-ui/react';
 import { yupResolver } from '@hookform/resolvers/yup';

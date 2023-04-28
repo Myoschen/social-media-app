@@ -1,7 +1,7 @@
-import Avatar from 'components/common/Avatar';
-import UsernameLink from 'components/common/UsernameLink';
+import Avatar from '@/components/common/Avatar';
+import UsernameLink from '@/components/common/UsernameLink';
 import { formatDistanceToNow } from 'date-fns';
-import { useQueryUser } from 'hooks/user';
+import { useQueryUser } from '@/hooks/user';
 import { Box, Flex, Text } from '@chakra-ui/react';
 
 interface HeaderProps {

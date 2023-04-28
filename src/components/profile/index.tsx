@@ -1,7 +1,7 @@
-import Avatar from 'components/common/Avatar';
-import PostList from 'components/dashboard/PostList';
-import { useQueryPosts } from 'hooks/posts';
-import { useQueryUser } from 'hooks/user';
+import Avatar from '@/components/common/Avatar';
+import PostList from '@/components/dashboard/PostList';
+import { useQueryPosts } from '@/hooks/posts';
+import { useQueryUser } from '@/hooks/user';
 import { useParams } from 'react-router-dom';
 import {
   Divider,
@@ -14,7 +14,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { format } from 'date-fns';
-import { useAuth } from 'hooks/auth';
+import { useAuth } from '@/hooks/auth';
 import { FaEdit } from 'react-icons/fa';
 import EditProfile from './EditProfile';
 

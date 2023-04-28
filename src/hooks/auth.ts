@@ -4,14 +4,14 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { auth, userCol } from 'lib/firebase';
-import { ROUTES } from 'lib/routes';
+import { auth, userCol } from '../libs/firebase';
+import { ROUTES } from '../libs/routes';
 import { useEffect, useState } from 'react';
 import { useAuthState, useSignOut } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 import { isUsernameExist } from '../utils/is-exist';
-import { IUser } from 'lib/types';
+import { IUser } from '../libs/types';
 
 export function useAuth() {
   const [authUser, authLoading, error] = useAuthState(auth);

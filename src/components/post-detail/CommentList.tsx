@@ -1,4 +1,4 @@
-import { useQueryComments } from 'hooks/comments';
+import { useQueryComments } from '@/hooks/comments';
 import Comment from './Comment';
 
 interface CommentListProps {

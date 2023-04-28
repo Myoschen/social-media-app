@@ -1,11 +1,11 @@
-import Avatar from 'components/common/Avatar';
+import Avatar from '@/components/common/Avatar';
 import { Box, Button, Flex, Input } from '@chakra-ui/react';
-import { useAuth } from 'hooks/auth';
+import { useAuth } from '@/hooks/auth';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { InferType } from 'yup';
-import { CommentSchema } from 'utils/form-validate';
-import { useAddComment } from 'hooks/comments';
+import { CommentSchema } from '@/utils/form-validate';
+import { useAddComment } from '@/hooks/comments';
 
 interface NewCommentProps {
   postId: string;

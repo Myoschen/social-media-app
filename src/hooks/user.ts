@@ -1,6 +1,6 @@
 import { doc, query, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { storage, userCol } from 'lib/firebase';
+import { storage, userCol } from '../libs/firebase';
 import { useState } from 'react';
 import {
   useCollectionData,

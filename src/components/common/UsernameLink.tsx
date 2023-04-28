@@ -1,6 +1,6 @@
 import { Button } from '@chakra-ui/react';
-import { ROUTES } from 'lib/routes';
-import { IUser } from 'lib/types';
+import { ROUTES } from '@/libs/routes';
+import { IUser } from '@/libs/types';
 import { Link } from 'react-router-dom';
 
 interface UsernameLinkProps {
