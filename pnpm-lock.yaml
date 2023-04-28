@@ -13,6 +13,12 @@ dependencies:
   '@emotion/styled':
     specifier: ^11.10.6
     version: 11.10.6(@emotion/react@11.10.6)(@types/react@18.2.0)(react@18.2.0)
+  '@fontsource/mulish':
+    specifier: ^4.5.14
+    version: 4.5.14
+  '@fontsource/work-sans':
+    specifier: ^4.5.14
+    version: 4.5.14
   '@hookform/resolvers':
     specifier: ^3.1.0
     version: 3.1.0(react-hook-form@7.43.9)
@@ -2143,6 +2149,14 @@ packages:
 
   /@firebase/webchannel-wrapper@0.10.0:
     resolution: {integrity: sha512-2I8y+vJVrPfPFJrnRGpao1Qc2Gu7wmYoo5ed2s5zK/DUGgcyY1Yr/xC0YdnKM4pi7rG3HqwW9ehAKUXoTMLdoA==}
+    dev: false
+
+  /@fontsource/mulish@4.5.14:
+    resolution: {integrity: sha512-EniB9wVc6hhCY4Vo+d80tOfAgHFIxXaApIuczzRJsqHF55UjncEo4OD/Kyl/LGwLlZ7ya4sf0/N6vJdRMBiwHw==}
+    dev: false
+
+  /@fontsource/work-sans@4.5.14:
+    resolution: {integrity: sha512-AFBSDBA3hnSCXHwb52qBOMEGqF5nfdbANp+y5/hbE1PMjYfFY0lUdtUwL5J7mRAdyn1NJwobJlhduHtlAyPzmA==}
     dev: false
 
   /@grpc/grpc-js@1.7.3:
