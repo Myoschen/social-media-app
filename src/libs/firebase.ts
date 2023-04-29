@@ -7,7 +7,7 @@ import {
   getFirestore,
 } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
-import { IComment, IPost, IUser } from './types';
+import { Comment, Post, User } from '@/types';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -21,11 +21,13 @@ const firebaseConfig = {
 const createCollection = <T = DocumentData>(collectionName: string) =>
   collection(database, collectionName) as CollectionReference<T>;
 
-export const app = initializeApp(firebaseConfig);
-export const database = getFirestore(app);
-export const auth = getAuth(app);
-export const storage = getStorage(app);
+const app = initializeApp(firebaseConfig);
+const database = getFirestore(app);
+const auth = getAuth(app);
+const storage = getStorage(app);
 
-export const userCol = createCollection<IUser>('users');
-export const postCol = createCollection<IPost>('posts');
-export const commentCol = createCollection<IComment>('comments');
+const userCol = createCollection<User>('users');
+const postCol = createCollection<Post>('posts');
+const commentCol = createCollection<Comment>('comments');
+
+export { app, database, auth, storage, userCol, postCol, commentCol };

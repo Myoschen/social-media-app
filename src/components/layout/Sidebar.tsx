@@ -1,31 +1,19 @@
-import Avatar from '@/components/common/Avatar';
-import { useAuth } from '@/hooks/auth';
-import { ROUTES } from '../../libs/routes';
 import { Link } from 'react-router-dom';
-import { Box, Button, Divider, Tag, VStack } from '@chakra-ui/react';
-
-function ActiveUser() {
-  const { user } = useAuth();
-
-  return (
-    <VStack spacing="5" mt="8" mb="4">
-      <Avatar user={user} size="xl" />
-      <Tag colorScheme="teal" fontWeight="600">
-        @{user?.username}
-      </Tag>
-      <Button
-        as={Link}
-        to={`${ROUTES.PROTECTED}/profile/${user?.id}`}
-        colorScheme="teal"
-        w="full"
-      >
-        Edit Profile
-      </Button>
-    </VStack>
-  );
-}
+import { Avatar } from '@/components/ui';
+import { useAuth, useLogout } from '@/hooks/auth';
+import { Box, Button, Text, VStack } from '@chakra-ui/react';
+import { ROUTES } from '../../libs/routes';
 
 function Sidebar() {
+  const {
+    state: { user },
+  } = useAuth();
+  const { logout, loading } = useLogout();
+
+  const handleLogout = async () => {
+    await logout();
+  };
+
   return (
     <Box
       flex="1"
@@ -35,18 +23,27 @@ function Sidebar() {
       px="6"
       h="100%"
     >
-      <ActiveUser />
       <VStack>
-        <Divider />
+        <VStack spacing="5" mt="8" mb="4">
+          <Avatar user={user} size="xl" />
+          <Text fontWeight="600">{user?.username}</Text>
+          <Button
+            as={Link}
+            to={`${ROUTES.AUTHORIZED}/profile/${user?.id}`}
+            colorScheme="teal"
+            w="full"
+          >
+            Edit Profile
+          </Button>
+        </VStack>
         <Button
-          as={Link}
-          to={ROUTES.USERS}
-          variant="outline"
           colorScheme="teal"
           mt="4"
           size="sm"
+          isLoading={loading}
+          onClick={handleLogout}
         >
-          ALL USERS
+          Log out
         </Button>
       </VStack>
     </Box>

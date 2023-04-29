@@ -1,22 +1,21 @@
-import Login from '@/components/auth/Login';
-import Register from '@/components/auth/Register';
-import Error from '@/components/common/Error';
-import Dashboard from '@/components/dashboard';
-import Layout from '@/components/layout';
-import PostDetail from '@/components/post-detail';
-import Profile from '@/components/profile';
-import AllUsers from '@/components/users';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { ProtectedLayout } from '@/components/layout';
+import AllUsersPage from '@/pages/all-users';
+import HomePage from '@/pages/home';
+import LoginPage from '@/pages/login';
+import PostDetailsPage from '@/pages/post-details';
+import ProfilePage from '@/pages/profile';
+import SignUpPage from '@/pages/sign-up';
 
 export const enum ROUTES {
   ROOT = '/',
   LOGIN = '/login',
-  REGISTER = '/register',
-  PROTECTED = '/protected',
-  DASHBOARD = '/protected/dashboard',
-  USERS = '/protected/users',
-  PROFILE = '/protected/profile/:id',
-  POSTS = '/protected/posts/:id',
+  SIGNUP = '/signup',
+  AUTHORIZED = '/a',
+  DASHBOARD = '/a/dashboard',
+  USERS = '/a/users',
+  PROFILE = '/a/profile/:id',
+  POSTS = '/a/posts/:id',
 }
 
 export const router = createBrowserRouter([
@@ -26,32 +25,31 @@ export const router = createBrowserRouter([
   },
   {
     path: ROUTES.LOGIN,
-    element: <Login />,
+    element: <LoginPage />,
   },
   {
-    path: ROUTES.REGISTER,
-    element: <Register />,
+    path: ROUTES.SIGNUP,
+    element: <SignUpPage />,
   },
   {
-    path: ROUTES.PROTECTED,
-    element: <Layout />,
-    errorElement: <Error />,
+    path: ROUTES.AUTHORIZED,
+    element: <ProtectedLayout />,
     children: [
       {
         path: ROUTES.DASHBOARD,
-        element: <Dashboard />,
+        element: <HomePage />,
       },
       {
         path: ROUTES.USERS,
-        element: <AllUsers />,
+        element: <AllUsersPage />,
       },
       {
         path: ROUTES.PROFILE,
-        element: <Profile />,
+        element: <ProfilePage />,
       },
       {
         path: ROUTES.POSTS,
-        element: <PostDetail />,
+        element: <PostDetailsPage />,
       },
     ],
   },
