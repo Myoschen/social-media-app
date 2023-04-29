@@ -75,11 +75,12 @@ $ pnpm start
 
 ## :spiral_notepad: Todos
 
-- [ ] add landing page.
-- [ ] implement light/dark mode.
-- [ ] support multiple languages (i18n).
-- [ ] fix firebase database and storage rules.
+- [x] fix firebase database and storage rules.
+- [ ] refactor post, comment, user custom hooks.
 - [ ] redesign the overall style of the website.
+- [ ] implement light/dark mode.
+- [ ] add landing page.
+- [ ] support multiple languages (i18n).
 
 ## :memo: License ##
 
