@@ -17,10 +17,7 @@
     "jsx": "react-jsx",
     "types": ["node"],
     "paths": {
-      "lib/*": ["./src/lib/*"],
-      "utils/*": ["./src/utils/*"],
-      "hooks/*": ["./src/hooks/*"],
-      "components/*": ["./src/components/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"],
