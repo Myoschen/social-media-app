@@ -1,37 +1,32 @@
-import { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { useLayoutEffect } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/auth';
 import { ROUTES } from '@/libs/routes';
-import { Box, Center, Container, Flex, Spinner } from '@chakra-ui/react';
+import { Box, Container, Flex } from '@chakra-ui/react';
 import Sidebar from './sidebar';
 
 function ProtectedLayout() {
   const navigate = useNavigate();
+  const location = useLocation();
   const {
-    state: { user, isChecked },
+    state: { user },
   } = useAuth();
 
-  useEffect(() => {
-    if (isChecked && !user) {
-      navigate(ROUTES.LOGIN);
+  useLayoutEffect(() => {
+    if (!user) {
+      navigate(ROUTES.LOGIN, { state: { from: location } });
     }
-  }, [user, isChecked]);
+  }, [user]);
 
-  return isChecked ? (
-    <>
-      <Container maxW="container.xl">
-        <Flex pt="16" pb="12">
-          <Sidebar />
-          <Box flex="4">
-            <Outlet />
-          </Box>
-        </Flex>
-      </Container>
-    </>
-  ) : (
-    <Center minH="100vh">
-      <Spinner size="lg" />
-    </Center>
+  return (
+    <Container maxW="container.xl">
+      <Flex pt="16" pb="12">
+        <Sidebar />
+        <Box flex="4">
+          <Outlet />
+        </Box>
+      </Flex>
+    </Container>
   );
 }
 

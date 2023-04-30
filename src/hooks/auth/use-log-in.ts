@@ -1,7 +1,7 @@
 import { FirebaseError } from 'firebase/app';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLayoutEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '@/libs/firebase';
 import { ROUTES } from '@/libs/routes';
 import { getUserDetails } from '@/utils/firebase';
@@ -13,6 +13,8 @@ function useLogin() {
   const [loading, setLoading] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || ROUTES.DASHBOARD;
   const {
     state: { user },
     dispatch,
@@ -47,7 +49,7 @@ function useLogin() {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (user) {
       navigate(ROUTES.DASHBOARD);
     }
