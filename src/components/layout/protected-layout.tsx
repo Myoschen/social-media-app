@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/auth';
 import { ROUTES } from '@/libs/routes';
@@ -12,7 +12,7 @@ function ProtectedLayout() {
     state: { user },
   } = useAuth();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!user) {
       navigate(ROUTES.LOGIN, { state: { from: location } });
     }
