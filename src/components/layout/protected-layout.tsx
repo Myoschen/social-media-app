@@ -18,7 +18,7 @@ function ProtectedLayout() {
     }
   }, [user]);
 
-  return (
+  return user ? (
     <Container maxW="container.xl">
       <Flex pt="16" pb="12">
         <Sidebar />
@@ -27,7 +27,7 @@ function ProtectedLayout() {
         </Box>
       </Flex>
     </Container>
-  );
+  ) : null;
 }
 
 export default ProtectedLayout;

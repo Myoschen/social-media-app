@@ -1,6 +1,6 @@
 import { FirebaseError } from 'firebase/app';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '@/libs/firebase';
 import { ROUTES } from '@/libs/routes';
@@ -49,7 +49,7 @@ function useLogin() {
     }
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (user) {
       navigate(from);
     }

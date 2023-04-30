@@ -1,6 +1,6 @@
 import { FirebaseError } from 'firebase/app';
 import { signOut } from 'firebase/auth';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '@/libs/firebase';
 import { ROUTES } from '@/libs/routes';
@@ -11,7 +11,10 @@ function useLogout() {
   const [loading, setLoading] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
-  const { dispatch } = useAuth();
+  const {
+    state: { user },
+    dispatch,
+  } = useAuth();
 
   const logout = async () => {
     setLoading(true);
@@ -22,7 +25,6 @@ function useLogout() {
         title: 'Log out successfully',
         status: 'success',
       });
-      navigate(ROUTES.ROOT);
     } catch (error) {
       if (error instanceof FirebaseError) {
         toast({
@@ -35,6 +37,12 @@ function useLogout() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (!user) {
+      navigate(ROUTES.LOGIN);
+    }
+  }, [user]);
 
   return { logout, loading };
 }
