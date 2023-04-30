@@ -24,7 +24,8 @@
   <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
   <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
   <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
-  <a href="#spiral_notepad-todo">Todos</a> &#xa0; | &#xa0;
+  <a href="#spiral_notepad-todos">Todos</a> &#xa0; | &#xa0;
+  <a href="#link-references">References</a> &#xa0; | &#xa0;
   <a href="#memo-license">License</a> &#xa0; | &#xa0;
   <a href="https://github.com/Myoschen" target="_blank">Author</a>
 </p>
@@ -38,9 +39,7 @@ Build a social media app with React, Firebase, Chakra UI.
 > test account
 > |      Account     | Password |
 > | ---------------- | -------- |
-> | ryan@example.com | 12345678 |
-
-> reference: [Build and Deploy a Full Stack Social Media App (ReactJS + Firebase v9 + Chakra UI)](https://www.youtube.com/watch?v=ELyjd5OXZKI)
+> | test@example.com | 12345678 |
 
 ## :rocket: Technologies ##
 
@@ -65,22 +64,26 @@ $ git clone https://github.com/Myoschen/social-media-app
 $ cd social-media
 
 # Install dependencies
-$ pnpm
+$ pnpm i
 
 # Run the project
-$ pnpm start
+$ pnpm dev
 
 # The server will initialize in the <http://localhost:5173>
 ```
 
-## :spiral_notepad: Todos
+## :spiral_notepad: Todos ##
 
 - [x] fix firebase database and storage rules.
-- [ ] refactor post, comment, user custom hooks.
+- [x] refactor post, comment, user custom hooks.
 - [ ] redesign the overall style of the website.
 - [ ] implement light/dark mode.
 - [ ] add landing page.
 - [ ] support multiple languages (i18n).
+
+## :link: References ##
+
+[Build and Deploy a Full Stack Social Media App (ReactJS + Firebase v9 + Chakra UI)](https://www.youtube.com/watch?v=ELyjd5OXZKI)
 
 ## :memo: License ##
 
