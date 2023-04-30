@@ -51,7 +51,7 @@ function useLogin() {
 
   useLayoutEffect(() => {
     if (user) {
-      navigate(ROUTES.DASHBOARD);
+      navigate(from);
     }
   }, [user]);
 
