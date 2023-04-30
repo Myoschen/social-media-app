@@ -1,6 +1,6 @@
 import { doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
-import { v4 as uuid } from 'uuid';
+import { nanoid } from 'nanoid';
 import { commentCol } from '@/libs/firebase';
 import { useToast } from '@chakra-ui/react';
 
@@ -16,7 +16,7 @@ export function useAddComment({
 
   const addComment = async (text: string) => {
     setLoading(true);
-    const id = uuid();
+    const id = nanoid();
     const docRef = doc(commentCol, id);
     await setDoc(docRef, {
       id,
