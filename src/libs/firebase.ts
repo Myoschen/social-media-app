@@ -26,8 +26,10 @@ const database = getFirestore(app);
 const auth = getAuth(app);
 const storage = getStorage(app);
 
-const userCol = createCollection<User>('users');
-const postCol = createCollection<Post>('posts');
-const commentCol = createCollection<Comment>('comments');
+const collections = {
+  user: createCollection<User>('users'),
+  post: createCollection<Post>('posts'),
+  comment: createCollection<Comment>('comments'),
+};
 
-export { app, database, auth, storage, userCol, postCol, commentCol };
+export { app, database, auth, storage, collections };

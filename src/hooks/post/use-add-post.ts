@@ -1,7 +1,8 @@
+import { FirebaseError } from 'firebase/app';
 import { doc, setDoc } from 'firebase/firestore';
-import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { postCol } from '@/libs/firebase';
+import { useState } from 'react';
+import { collections } from '@/libs/firebase';
 import { Post } from '@/types';
 import { useToast } from '@chakra-ui/react';
 
@@ -11,19 +12,29 @@ function useAddPost() {
 
   const addPost = async (post: Partial<Post>) => {
     setLoading(true);
-    const id = nanoid();
-    const docRef = doc(postCol, id);
-    await setDoc(docRef, {
-      ...post,
-      id,
-      date: Date.now(),
-      likes: [] as string[],
-    });
-    toast({
-      title: 'Post added successfully',
-      status: 'success',
-    });
-    setLoading(false);
+    try {
+      const id = nanoid();
+      await setDoc(doc(collections.post, id), {
+        ...post,
+        id,
+        date: Date.now(),
+        likes: [] as string[],
+      });
+      toast({
+        title: 'Post added successfully',
+        status: 'success',
+      });
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        toast({
+          title: 'Failed to add post',
+          status: 'error',
+          description: error.code,
+        });
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return { addPost, isLoading };

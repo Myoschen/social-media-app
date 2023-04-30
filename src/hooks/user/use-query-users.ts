@@ -1,11 +1,36 @@
-import { query } from 'firebase/firestore';
-import { userCol } from '@/libs/firebase';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { onSnapshot, query } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import { collections } from '@/libs/firebase';
+import { Nullable, Users } from '@/types';
+import { useToast } from '@chakra-ui/react';
 
 function useQueryUsers() {
-  const q = query(userCol);
-  const [users, isLoading, error] = useCollectionData(q);
-  if (error) throw error;
+  const [users, setUsers] = useState<Users>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const toast = useToast();
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      query(collections.user),
+      (snapshot) => {
+        if (!snapshot.empty) {
+          setUsers(snapshot.docs.map((doc) => ({ ...doc.data() })));
+        } else {
+          setUsers([]);
+        }
+        setIsLoading(false);
+      },
+      (error) => {
+        toast({
+          title: 'Failed to query users',
+          status: 'error',
+          description: error.code,
+        });
+      }
+    );
+    return () => unsubscribe();
+  }, []);
+
   return { users, isLoading };
 }
 

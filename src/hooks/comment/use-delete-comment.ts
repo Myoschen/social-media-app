@@ -1,6 +1,7 @@
+import { FirebaseError } from 'firebase/app';
 import { deleteDoc, doc } from 'firebase/firestore';
 import { useState } from 'react';
-import { commentCol } from '@/libs/firebase';
+import { collections } from '@/libs/firebase';
 import { useToast } from '@chakra-ui/react';
 
 function useDeleteComment(id: string) {
@@ -9,13 +10,23 @@ function useDeleteComment(id: string) {
 
   const deleteComment = async () => {
     setLoading(true);
-    const docRef = doc(commentCol, id);
-    await deleteDoc(docRef);
-    toast({
-      title: 'Comment deleted successfully',
-      status: 'success',
-    });
-    setLoading(false);
+    try {
+      await deleteDoc(doc(collections.comment, id));
+      toast({
+        title: 'Comment deleted successfully',
+        status: 'success',
+      });
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        toast({
+          title: 'Failed to delete comment',
+          status: 'error',
+          description: error.code,
+        });
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return { deleteComment, isLoading };

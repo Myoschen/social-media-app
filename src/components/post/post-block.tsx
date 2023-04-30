@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Avatar, UserLink } from '@/components/ui';
 import { useAuth } from '@/hooks/auth';
 import { useQueryComments } from '@/hooks/comment';
-import { useDeletePost, useToggleLike } from '@/hooks/post';
+import { useDeletePost, useToggleLikePost } from '@/hooks/post';
 import { useQueryUser } from '@/hooks/user';
 import { ROUTES } from '@/libs/routes';
 import { Post } from '@/types';
@@ -48,7 +48,7 @@ function Actions({ post }: ActionsProps) {
     state: { user },
   } = useAuth();
   const isLiked = post.likes.includes(user?.id!);
-  const { toggleLike, isLoading: likeLoading } = useToggleLike({
+  const { toggleLike, isLoading: likeLoading } = useToggleLikePost({
     id: post.id,
     isLiked,
     uid: user?.id!,

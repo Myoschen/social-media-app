@@ -1,38 +1,51 @@
+import { FirebaseError } from 'firebase/app';
 import { doc, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { storage, userCol } from '@/libs/firebase';
+import { collections, storage } from '@/libs/firebase';
 import { useToast } from '@chakra-ui/react';
 
 function useUpdateProfile(uid: string, url: string) {
   const [isLoading, setLoading] = useState(false);
   const [file, setFile] = useState<string | File>(url);
-  const toast = useToast();
   const navigate = useNavigate();
+  const toast = useToast();
 
   const updateProfile = async (username: string) => {
     setLoading(true);
-    let avatarUrl;
-    if (file instanceof File) {
-      const fileRef = ref(storage, 'avatars/' + uid);
-      await uploadBytes(fileRef, file);
-      avatarUrl = await getDownloadURL(fileRef);
-    } else {
-      avatarUrl = file;
+    try {
+      let avatar;
+      if (file instanceof File) {
+        // save file to firebase storage
+        const fileRef = ref(storage, 'avatars/' + uid);
+        await uploadBytes(fileRef, file);
+        avatar = await getDownloadURL(fileRef);
+      } else {
+        avatar = file;
+      }
+
+      // update user details
+      await updateDoc(doc(collections.user, uid), { avatar, username });
+
+      toast({
+        title: 'Profile updated successfully',
+        status: 'success',
+      });
+
+      // reload page
+      navigate(0);
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        toast({
+          title: 'Failed to update profile',
+          status: 'error',
+          description: error.code,
+        });
+      }
+    } finally {
+      setLoading(false);
     }
-
-    const docRef = doc(userCol, uid);
-    await updateDoc(docRef, { avatar: avatarUrl, username });
-
-    toast({
-      title: 'Profile updated successfully',
-      status: 'success',
-    });
-
-    setLoading(false);
-
-    navigate(0);
   };
 
   return {

@@ -40,9 +40,6 @@ dependencies:
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
-  react-firebase-hooks:
-    specifier: ^5.1.1
-    version: 5.1.1(firebase@9.21.0)(react@18.2.0)
   react-hook-form:
     specifier: ^7.43.9
     version: 7.43.9(react@18.2.0)
@@ -3038,16 +3035,6 @@ packages:
 
   /react-fast-compare@3.2.1:
     resolution: {integrity: sha512-xTYf9zFim2pEif/Fw16dBiXpe0hoy5PxcD8+OwBnTtNLfIm3g6WxhKNurY+6OmdH1u6Ta/W/Vl6vjbYP1MFnDg==}
-    dev: false
-
-  /react-firebase-hooks@5.1.1(firebase@9.21.0)(react@18.2.0):
-    resolution: {integrity: sha512-y2UpWs82xs+39q5Rc/wq316ca52QsC0n8m801V+yM4IC4hbfOL4yQPVSh7w+ydstdvjN9F+lvs1WrO2VYxpmdA==}
-    peerDependencies:
-      firebase: '>= 9.0.0'
-      react: '>= 16.8.0'
-    dependencies:
-      firebase: 9.21.0
-      react: 18.2.0
     dev: false
 
   /react-focus-lock@2.9.2(@types/react@18.2.0)(react@18.2.0):
