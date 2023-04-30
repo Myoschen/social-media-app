@@ -5,4 +5,6 @@ interface User {
   date: number;
 }
 
-export type { User };
+type Users = Array<User>;
+
+export type { User, Users };

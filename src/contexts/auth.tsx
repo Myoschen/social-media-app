@@ -6,6 +6,7 @@ import {
   useEffect,
   useReducer,
 } from 'react';
+import { FullLoading } from '@/components/ui';
 import { auth } from '@/libs/firebase';
 import { Nullable, User } from '@/types';
 import { getUserDetails } from '@/utils/firebase';
@@ -17,12 +18,12 @@ type AuthAction =
 
 type AuthState = {
   user: Nullable<User>;
-  isChecked: boolean;
+  isInitialChecking: boolean;
 };
 
 const initialState: AuthState = {
   user: null,
-  isChecked: false,
+  isInitialChecking: true,
 };
 
 const authReducer = (state: AuthState, action: AuthAction) => {
@@ -32,7 +33,11 @@ const authReducer = (state: AuthState, action: AuthAction) => {
     case 'LOGOUT':
       return { ...state, user: null };
     case 'CHECK_AUTH':
-      return { ...state, user: action.payload, isChecked: true };
+      return {
+        ...state,
+        user: action.payload,
+        isInitialChecking: false,
+      };
     default:
       return state;
   }
@@ -71,7 +76,7 @@ function AuthProvider({ children }: ProviderProps) {
 
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
-      {children}
+      {state.isInitialChecking ? <FullLoading /> : children}
     </AuthContext.Provider>
   );
 }

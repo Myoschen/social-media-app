@@ -94,7 +94,7 @@ function SignUpPage() {
             w="full"
             isLoading={loading}
           >
-            Register
+            Sign Up
           </Button>
         </form>
         <Text align="center" mt="6">

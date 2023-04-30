@@ -12,7 +12,7 @@ function App() {
         defaultOptions: {
           isClosable: true,
           position: 'bottom-right',
-          duration: 3000,
+          duration: 1500,
         },
       }}
     >

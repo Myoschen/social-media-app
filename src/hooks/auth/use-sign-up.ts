@@ -1,6 +1,6 @@
 import { FirebaseError } from 'firebase/app';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '@/libs/firebase';
 import { ROUTES } from '@/libs/routes';
@@ -56,7 +56,7 @@ function useSignUp() {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (user) {
       navigate(ROUTES.DASHBOARD);
     }
