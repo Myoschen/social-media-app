@@ -76,8 +76,8 @@ $ pnpm dev
 
 - [x] fix firebase database and storage rules.
 - [x] refactor post, comment, user custom hooks.
+- [x] implement light/dark mode.
 - [ ] redesign the overall style of the website.
-- [ ] implement light/dark mode.
 - [ ] add landing page.
 - [ ] support multiple languages (i18n).
 
