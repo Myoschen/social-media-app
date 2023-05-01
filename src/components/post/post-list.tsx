@@ -1,5 +1,5 @@
 import { Posts } from '@/types';
-import { Text, VStack } from '@chakra-ui/react';
+import { Grid, Text } from '@chakra-ui/react';
 import PostBlock from './post-block';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 
 function PostList({ posts }: Props) {
   return (
-    <VStack spacing="4">
+    <Grid mt="10" maxW="720" mx="auto" gap="4">
       {posts?.length === 0 ? (
         <Text textAlign="center" fontSize="xl">
           No posts yet... Feeling a little lonely here.
@@ -16,7 +16,7 @@ function PostList({ posts }: Props) {
       ) : (
         posts?.map((post) => <PostBlock key={post.id} post={post} />)
       )}
-    </VStack>
+    </Grid>
   );
 }
 

@@ -1,5 +1,5 @@
 import { formatDistanceToNow } from 'date-fns';
-import { FaHeart, FaRegComment, FaRegHeart, FaTrash } from 'react-icons/fa';
+import { RxBookmark, RxChatBubble, RxHeart, RxHeartFilled, RxTrash } from 'react-icons/rx';
 import { Link } from 'react-router-dom';
 import { Avatar, UserLink } from '@/components/ui';
 import { useAuth } from '@/hooks/auth';
@@ -7,7 +7,7 @@ import { useQueryComments } from '@/hooks/comment';
 import { useDeletePost, useToggleLikePost } from '@/hooks/post';
 import { useQueryUser } from '@/hooks/user';
 import { Post } from '@/types';
-import { Box, Flex, HStack, IconButton, Spacer, Text } from '@chakra-ui/react';
+import { Box, Flex, HStack, IconButton, Spacer, Text, useColorModeValue } from '@chakra-ui/react';
 
 interface HeaderProps {
   uid: string;
@@ -15,20 +15,20 @@ interface HeaderProps {
 }
 
 function Header({ uid, date }: HeaderProps) {
+  const borderColor = useColorModeValue('gray.100', 'gray.800');
   const { user, isLoading } = useQueryUser(uid);
 
   if (isLoading) return <span>Loading</span>;
 
   return (
     <Flex
-      align="center"
-      borderBottom="1px solid"
-      borderColor="gray.200"
       p="3"
-      bg="gray.50"
+      align="center"
+      borderBottomWidth="1px"
+      borderColor={borderColor}
     >
-      <Avatar user={user} size="sm" />
-      <Box ml="2">
+      <Avatar user={user} />
+      <Box ml="3">
         <UserLink user={user} />
         <Text fontSize="sm" color="gray.500">
           {formatDistanceToNow(date)} ago
@@ -47,26 +47,25 @@ function Actions({ post }: ActionsProps) {
     state: { user },
   } = useAuth();
   const isLiked = post.likes.includes(user?.id!);
-  const { toggleLike, isLoading: likeLoading } = useToggleLikePost({
+  const { toggleLike } = useToggleLikePost({
     id: post.id,
     isLiked,
     uid: user?.id!,
   });
-  const { deletePost, isLoading: deleteLoading } = useDeletePost(post.id);
-  const { comments, isLoading: commentsLoading } = useQueryComments(post.id);
+  const { deletePost } = useDeletePost(post.id);
+  const { comments } = useQueryComments(post.id);
 
   return (
     <HStack p="2">
       <HStack spacing="0.5">
         <IconButton
-          icon={isLiked ? <FaHeart /> : <FaRegHeart />}
+          icon={isLiked ? <RxHeartFilled /> : <RxHeart />}
           size="sm"
           colorScheme="red"
           variant="ghost"
           aria-label="like"
           isRound
           onClick={toggleLike}
-          isLoading={likeLoading}
         />
         <Text>{post.likes.length}</Text>
       </HStack>
@@ -74,27 +73,35 @@ function Actions({ post }: ActionsProps) {
         <IconButton
           as={Link}
           to={`/posts/${post.id}`}
-          icon={<FaRegComment />}
+          icon={<RxChatBubble />}
           size="sm"
           colorScheme="blue"
           variant="ghost"
           aria-label="comment"
           isRound
-          isLoading={commentsLoading}
+        />
+        <Text>{comments?.length}</Text>
+      </HStack>
+      <HStack spacing="0.5">
+        <IconButton
+          icon={<RxBookmark />}
+          size="sm"
+          colorScheme="blue"
+          variant="ghost"
+          aria-label="comment"
+          isRound
         />
         <Text>{comments?.length}</Text>
       </HStack>
       <Spacer />
       {post.uid === user?.id ? (
         <IconButton
-          icon={<FaTrash />}
+          icon={<RxTrash />}
           size="sm"
-          colorScheme="blackAlpha"
           variant="ghost"
           aria-label="comment"
           isRound
           onClick={deletePost}
-          isLoading={deleteLoading}
         />
       ) : null}
     </HStack>
@@ -106,11 +113,13 @@ interface BlockProps {
 }
 
 function PostBlock({ post }: BlockProps) {
+  const borderColor = useColorModeValue('gray.100', 'gray.800');
+
   return (
-    <Box px="4" w="full" maxW="720">
-      <Box border="2px solid" borderColor="gray.100" borderRadius="md">
+    <Box w="full" maxW="720">
+      <Box borderWidth="1px" borderColor={borderColor} borderRadius="md">
         <Header uid={post.uid} date={post.date} />
-        <Box p="2" minH="100px">
+        <Box px="4" py="2" minH="120px">
           <Text wordBreak="break-word" fontSize="md">
             {post.text}
           </Text>
