@@ -1,18 +1,10 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link as RouteLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useLogin } from '@/hooks/auth';
 import { ROUTES } from '@/libs/routes';
 import { LoginInput, LoginSchema } from '@/utils/form-schema';
 import {
-  Box,
-  Button,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Heading,
-  Input,
-  Link,
-  Text,
+    Box, Button, FormControl, FormErrorMessage, FormLabel, Heading, Input, Link as ChakraLink, Text
 } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -37,6 +29,7 @@ function LoginPage() {
         <FormControl isInvalid={!!errors.email} py="2">
           <FormLabel>Email</FormLabel>
           <Input
+            colorScheme="blue"
             type="email"
             placeholder="your email..."
             {...register('email')}
@@ -48,6 +41,7 @@ function LoginPage() {
         <FormControl isInvalid={!!errors.password} py="2">
           <FormLabel>Password</FormLabel>
           <Input
+            colorScheme="blue"
             type="password"
             placeholder="password..."
             {...register('password')}
@@ -69,14 +63,9 @@ function LoginPage() {
       </form>
       <Text align="center" mt="6">
         Don't have an account?&nbsp;
-        <Link
-          as={RouteLink}
-          to={ROUTES.SIGNUP}
-          color="teal.800"
-          textDecor="underline"
-        >
+        <ChakraLink as={Link} to={ROUTES.SIGNUP} color="blue.400">
           Sign Up
-        </Link>
+        </ChakraLink>
       </Text>
     </Box>
   );

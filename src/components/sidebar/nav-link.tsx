@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Button, ListItem, useColorModeValue } from '@chakra-ui/react';
+import { Button, ListItem } from '@chakra-ui/react';
 
 interface Props {
   to: string;
@@ -8,8 +8,6 @@ interface Props {
 }
 
 function NavLink({ to, icon, text }: Props) {
-  const color = useColorModeValue('black', 'white');
-
   return (
     <ListItem>
       <Button
@@ -19,7 +17,6 @@ function NavLink({ to, icon, text }: Props) {
         variant="ghost"
         w="full"
         justifyContent="start"
-        color={color}
         size="lg"
       >
         {text}

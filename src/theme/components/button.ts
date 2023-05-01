@@ -36,7 +36,7 @@ const Button = defineStyleConfig({
       },
     },
     ghost: {
-      _hover: { bgColor: 'blue.50' },
+      _hover: { color: 'blue.400', bgColor: 'blue.50' },
       _active: { bgColor: 'blue.100' },
       _dark: {
         _hover: { bgColor: 'whiteAlpha.50' },
