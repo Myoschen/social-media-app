@@ -29,11 +29,11 @@ function Sidebar() {
           <Text fontWeight="600">{user?.username}</Text>
           <Button
             as={Link}
-            to={`${ROUTES.AUTHORIZED}/profile/${user?.id}`}
+            to={`${ROUTES.USERS}/${user?.id}`}
             colorScheme="teal"
             w="full"
           >
-            Edit Profile
+            Profile
           </Button>
         </VStack>
         <Button

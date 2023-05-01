@@ -11,7 +11,7 @@ function UserLink({ user }: Props) {
   return (
     <Button
       as={Link}
-      to={`${ROUTES.AUTHORIZED}/profile/${user?.id}`}
+      to={`${ROUTES.USERS}/${user?.id}`}
       colorScheme="teal"
       variant="link"
     >

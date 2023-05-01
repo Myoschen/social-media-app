@@ -17,7 +17,7 @@ function UserCard({ user }: Props) {
       </Tag>
       <Button
         as={Link}
-        to={`${ROUTES.AUTHORIZED}/profile/${user.id}`}
+        to={`${ROUTES.USERS}/${user.id}`}
         size="sm"
         variant="link"
         colorScheme="teal"

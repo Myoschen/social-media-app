@@ -42,7 +42,6 @@ function useSignUp() {
         title: 'Sign up successfully',
         status: 'success',
       });
-      navigate(ROUTES.DASHBOARD);
     } catch (error) {
       if (error instanceof FirebaseError) {
         toast({
@@ -58,7 +57,7 @@ function useSignUp() {
 
   useEffect(() => {
     if (user) {
-      navigate(ROUTES.DASHBOARD);
+      navigate(ROUTES.HOME);
     }
   }, [user]);
 

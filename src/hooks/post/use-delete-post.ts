@@ -1,25 +1,16 @@
 import { FirebaseError } from 'firebase/app';
 import { deleteDoc, doc, getDocs, query, where } from 'firebase/firestore';
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { collections } from '@/libs/firebase';
-import { ROUTES } from '@/libs/routes';
 import { useToast } from '@chakra-ui/react';
 
 function useDeletePost(id: string) {
   const [isLoading, setLoading] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
   const toast = useToast();
 
   const deletePost = async () => {
     setLoading(true);
     try {
-      // navigate to dashboard
-      if (location.pathname.startsWith(`${ROUTES.AUTHORIZED}/posts`)) {
-        navigate(ROUTES.DASHBOARD);
-      }
-
       // delete post
       await deleteDoc(doc(collections.post, id));
 

@@ -14,7 +14,7 @@ function useLogin() {
   const toast = useToast();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || ROUTES.DASHBOARD;
+  const from = location.state?.from?.pathname || ROUTES.HOME;
   const {
     state: { user },
     dispatch,

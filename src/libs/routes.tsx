@@ -1,5 +1,5 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { ProtectedLayout } from '@/components/layout';
+import { AuthLayout, ProtectedLayout } from '@/components/layout';
 import AllUsersPage from '@/pages/all-users';
 import HomePage from '@/pages/home';
 import LoginPage from '@/pages/login';
@@ -9,34 +9,64 @@ import SignUpPage from '@/pages/sign-up';
 
 export const enum ROUTES {
   ROOT = '/',
-  LOGIN = '/login',
-  SIGNUP = '/signup',
-  AUTHORIZED = '/a',
-  DASHBOARD = '/a/dashboard',
-  USERS = '/a/users',
-  PROFILE = '/a/profile/:id',
-  POSTS = '/a/posts/:id',
+  LANDING = '/landing',
+  HOME = '/home',
+  USERS = '/users',
+  USER_DETAILS = '/users/:id',
+  POST_DETAILS = '/posts/:id',
+  AUTH = '/auth',
+  LOGIN = '/auth/login',
+  SIGNUP = '/auth/signup',
 }
 
 export const router = createBrowserRouter([
   {
+    path: ROUTES.LANDING,
+    element: (
+      <div
+        style={{
+          backgroundColor: '#222',
+          color: '#eee',
+          fontSize: '2rem',
+          fontWeight: '700',
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        Landing Page (under construction)
+      </div>
+    ),
+  },
+  {
+    path: ROUTES.AUTH,
+    element: <AuthLayout />,
+    children: [
+      {
+        index: true,
+        element: <Navigate to={ROUTES.LOGIN} replace={true} />,
+      },
+      {
+        path: ROUTES.LOGIN,
+        element: <LoginPage />,
+      },
+      {
+        path: ROUTES.SIGNUP,
+        element: <SignUpPage />,
+      },
+    ],
+  },
+  {
     path: ROUTES.ROOT,
-    element: <Navigate to={ROUTES.LOGIN} />,
-  },
-  {
-    path: ROUTES.LOGIN,
-    element: <LoginPage />,
-  },
-  {
-    path: ROUTES.SIGNUP,
-    element: <SignUpPage />,
-  },
-  {
-    path: ROUTES.AUTHORIZED,
     element: <ProtectedLayout />,
     children: [
       {
-        path: ROUTES.DASHBOARD,
+        index: true,
+        element: <Navigate to={ROUTES.HOME} replace={true} />,
+      },
+      {
+        path: ROUTES.HOME,
         element: <HomePage />,
       },
       {
@@ -44,11 +74,11 @@ export const router = createBrowserRouter([
         element: <AllUsersPage />,
       },
       {
-        path: ROUTES.PROFILE,
+        path: ROUTES.USER_DETAILS,
         element: <ProfilePage />,
       },
       {
-        path: ROUTES.POSTS,
+        path: ROUTES.POST_DETAILS,
         element: <PostDetailsPage />,
       },
     ],

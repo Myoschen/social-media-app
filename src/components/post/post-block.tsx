@@ -6,7 +6,6 @@ import { useAuth } from '@/hooks/auth';
 import { useQueryComments } from '@/hooks/comment';
 import { useDeletePost, useToggleLikePost } from '@/hooks/post';
 import { useQueryUser } from '@/hooks/user';
-import { ROUTES } from '@/libs/routes';
 import { Post } from '@/types';
 import { Box, Flex, HStack, IconButton, Spacer, Text } from '@chakra-ui/react';
 
@@ -74,7 +73,7 @@ function Actions({ post }: ActionsProps) {
       <HStack spacing="0.5">
         <IconButton
           as={Link}
-          to={`${ROUTES.AUTHORIZED}/posts/${post.id}`}
+          to={`/posts/${post.id}`}
           icon={<FaRegComment />}
           size="sm"
           colorScheme="blue"
