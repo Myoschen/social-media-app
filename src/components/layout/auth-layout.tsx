@@ -1,9 +1,11 @@
 import { Outlet } from 'react-router-dom';
-import { Center } from '@chakra-ui/react';
+import { Center, useColorModeValue } from '@chakra-ui/react';
 
 function AuthLayout() {
+  const bgColor = useColorModeValue('white', '#222');
+
   return (
-    <Center w="full" h="100vh">
+    <Center w="full" h="100vh" bgColor={bgColor}>
       <Outlet />
     </Center>
   );

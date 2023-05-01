@@ -1,24 +1,16 @@
 import { RouterProvider } from 'react-router-dom';
 import { AuthProvider } from '@/contexts/auth';
 import { router } from '@/libs/routes';
-import theme from '@/libs/theme';
-import { ChakraProvider } from '@chakra-ui/react';
+import { theme, toastOptions } from '@/theme';
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 
 function App() {
   return (
-    <ChakraProvider
-      theme={theme}
-      toastOptions={{
-        defaultOptions: {
-          isClosable: true,
-          position: 'bottom-right',
-          duration: 1500,
-        },
-      }}
-    >
+    <ChakraProvider theme={theme} toastOptions={toastOptions}>
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
     </ChakraProvider>
   );
 }

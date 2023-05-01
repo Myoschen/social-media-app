@@ -30,13 +30,7 @@ function NewPost() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <HStack justify="space-between">
           <Heading>New Post</Heading>
-          <Button
-            colorScheme="teal"
-            type="submit"
-            size="md"
-            isLoading={isLoading}
-            loadingText="Loading"
-          >
+          <Button type="submit" isLoading={isLoading} loadingText="Loading">
             Post
           </Button>
         </HStack>

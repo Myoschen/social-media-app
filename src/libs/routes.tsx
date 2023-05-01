@@ -1,5 +1,5 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { AuthLayout, ProtectedLayout } from '@/components/layout';
+import { AppLayout, AuthLayout } from '@/components/layout';
 import AllUsersPage from '@/pages/all-users';
 import HomePage from '@/pages/home';
 import LoginPage from '@/pages/login';
@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
   },
   {
     path: ROUTES.ROOT,
-    element: <ProtectedLayout />,
+    element: <AppLayout />,
     children: [
       {
         index: true,

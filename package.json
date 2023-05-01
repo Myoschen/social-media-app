@@ -10,10 +10,11 @@
   },
   "dependencies": {
     "@babel/core": "^7.20.7",
+    "@chakra-ui/anatomy": "^2.1.1",
     "@chakra-ui/react": "^2.6.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "@fontsource/mulish": "^4.5.14",
+    "@fontsource/jetbrains-mono": "^4.5.12",
     "@fontsource/work-sans": "^4.5.14",
     "@hookform/resolvers": "^3.1.0",
     "date-fns": "^2.29.3",
