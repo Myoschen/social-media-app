@@ -15,7 +15,9 @@ const baseStyle = definePartsStyle({
     },
   },
   item: {
+    fontSize: 'sm',
     _hover: {
+      color: 'blue.400',
       bgColor: 'blue.50',
     },
     _dark: {
