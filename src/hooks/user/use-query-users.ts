@@ -1,7 +1,7 @@
 import { onSnapshot, query } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { collections } from '@/libs/firebase';
-import { Nullable, Users } from '@/types';
+import { Users } from '@/types';
 import { useToast } from '@chakra-ui/react';
 
 function useQueryUsers() {

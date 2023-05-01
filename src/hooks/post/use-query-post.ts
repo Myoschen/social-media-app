@@ -1,7 +1,7 @@
 import { doc, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { collections } from '@/libs/firebase';
-import { Nullable, Post } from '@/types';
+import { Post } from '@/types';
 import { useToast } from '@chakra-ui/react';
 
 function useQueryPost(id: string) {
