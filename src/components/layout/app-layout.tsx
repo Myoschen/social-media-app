@@ -14,7 +14,7 @@ function AppLayout() {
   return user ? (
     <Flex minH="100vh" bgColor={bgColor}>
       <Sidebar />
-      <Box as="main" w="calc(100% - 280px)" ml="auto">
+      <Box as="main" w="calc(100% - 280px)" ml="auto" py="8">
         <Outlet />
       </Box>
     </Flex>

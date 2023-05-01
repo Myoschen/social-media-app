@@ -1,4 +1,5 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { RxPencil1 } from 'react-icons/rx';
 import { Avatar } from '@/components/ui';
 import { useAuth } from '@/hooks/auth';
 import { useAddComment } from '@/hooks/comment';
@@ -33,23 +34,22 @@ function NewComment({ postId }: NewCommentProps) {
         <Avatar user={user} size="sm" />
         <Box flex="1">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Box>
-              <Input
-                size="sm"
-                variant="flushed"
-                placeholder="Write comment..."
-                autoComplete="off"
-                {...register('text')}
-              />
-            </Box>
+            <Input
+              size="sm"
+              variant="flushed"
+              placeholder="Write comment..."
+              {...register('text')}
+            />
             <Flex pt="2">
               <Button
-                type="submit"
                 ml="auto"
+                leftIcon={<RxPencil1 />}
+                size="sm"
+                variant="ghost"
+                type="submit"
                 isLoading={isLoading}
-                loadingText="Loading"
               >
-                Add Comment
+                Comment
               </Button>
             </Flex>
           </form>

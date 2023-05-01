@@ -1,4 +1,5 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { RxPaperPlane } from 'react-icons/rx';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useAuth } from '@/hooks/auth';
 import { useAddPost } from '@/hooks/post';
@@ -26,18 +27,25 @@ function NewPost() {
   };
 
   return (
-    <Box maxW="720" mx="auto" px="4" py="10">
+    <Box maxW="720" mx="auto">
       <form onSubmit={handleSubmit(onSubmit)}>
         <HStack justify="space-between">
-          <Heading>New Post</Heading>
-          <Button type="submit" isLoading={isLoading} loadingText="Loading">
+          <Heading fontWeight="semibold">New Post</Heading>
+          <Button
+            rightIcon={<RxPaperPlane />}
+            size="sm"
+            variant="outline"
+            type="submit"
+            isLoading={isLoading}
+          >
             Post
           </Button>
         </HStack>
         <Textarea
           as={TextareaAutosize}
+          mt="4"
+          minH="160"
           resize="none"
-          mt="5"
           placeholder="Create a new post..."
           {...register('text')}
         />
