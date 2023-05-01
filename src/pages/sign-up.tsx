@@ -1,18 +1,10 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link as RouteLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSignUp } from '@/hooks/auth';
 import { ROUTES } from '@/libs/routes';
 import { SignUpInput, SignUpSchema } from '@/utils/form-schema';
 import {
-  Box,
-  Button,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Heading,
-  Input,
-  Link,
-  Text,
+    Box, Button, FormControl, FormErrorMessage, FormLabel, Heading, Input, Link as ChakraLink, Text
 } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -40,7 +32,12 @@ function SignUpPage() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl isInvalid={!!errors.username} py="2">
           <FormLabel>Username</FormLabel>
-          <Input type="text" placeholder="username" {...register('username')} />
+          <Input
+            colorScheme="blue"
+            type="text"
+            placeholder="username"
+            {...register('username')}
+          />
           {errors.username ? (
             <FormErrorMessage>{errors.username.message}</FormErrorMessage>
           ) : null}
@@ -48,6 +45,7 @@ function SignUpPage() {
         <FormControl isInvalid={!!errors.email} py="2">
           <FormLabel>Email</FormLabel>
           <Input
+            colorScheme="blue"
             type="email"
             placeholder="user@email.com"
             {...register('email')}
@@ -59,6 +57,7 @@ function SignUpPage() {
         <FormControl isInvalid={!!errors.password} py="2">
           <FormLabel>Password</FormLabel>
           <Input
+            colorScheme="blue"
             type="password"
             placeholder="password"
             {...register('password')}
@@ -70,6 +69,7 @@ function SignUpPage() {
         <FormControl isInvalid={!!errors.confirmPassword} py="2">
           <FormLabel>Confirm Password</FormLabel>
           <Input
+            colorScheme="blue"
             type="password"
             placeholder="password"
             {...register('confirmPassword')}
@@ -93,14 +93,9 @@ function SignUpPage() {
       </form>
       <Text align="center" mt="6">
         Already have an account?&nbsp;
-        <Link
-          as={RouteLink}
-          to={ROUTES.LOGIN}
-          color="teal.800"
-          fontWeight="medium"
-        >
+        <ChakraLink as={Link} to={ROUTES.LOGIN} color="blue.400">
           Log In
-        </Link>
+        </ChakraLink>
       </Text>
     </Box>
   );
