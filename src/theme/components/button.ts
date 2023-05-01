@@ -13,12 +13,12 @@ const Button = defineStyleConfig({
       fontSize: '18px',
     },
     md: {
-      px: '14px',
+      px: '16px',
       py: '8px',
       fontSize: '16px',
     },
     sm: {
-      px: '8px',
+      px: '12px',
       py: '4px',
       fonSize: '14px',
     },
@@ -36,6 +36,14 @@ const Button = defineStyleConfig({
       },
     },
     ghost: {
+      _hover: { color: 'blue.400', bgColor: 'blue.50' },
+      _active: { bgColor: 'blue.100' },
+      _dark: {
+        _hover: { bgColor: 'whiteAlpha.50' },
+        _active: { bgColor: 'whiteAlpha.100' },
+      },
+    },
+    outline: {
       _hover: { color: 'blue.400', bgColor: 'blue.50' },
       _active: { bgColor: 'blue.100' },
       _dark: {
