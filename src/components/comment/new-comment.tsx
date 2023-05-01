@@ -45,8 +45,6 @@ function NewComment({ postId }: NewCommentProps) {
             <Flex pt="2">
               <Button
                 type="submit"
-                colorScheme="teal"
-                size="xs"
                 ml="auto"
                 isLoading={isLoading}
                 loadingText="Loading"

@@ -4,6 +4,9 @@ dependencies:
   '@babel/core':
     specifier: ^7.20.7
     version: 7.20.7
+  '@chakra-ui/anatomy':
+    specifier: ^2.1.1
+    version: 2.1.1
   '@chakra-ui/react':
     specifier: ^2.6.0
     version: 2.6.0(@emotion/react@11.10.6)(@emotion/styled@11.10.6)(@types/react@18.2.0)(framer-motion@10.12.4)(react-dom@18.2.0)(react@18.2.0)
@@ -13,9 +16,9 @@ dependencies:
   '@emotion/styled':
     specifier: ^11.10.6
     version: 11.10.6(@emotion/react@11.10.6)(@types/react@18.2.0)(react@18.2.0)
-  '@fontsource/mulish':
-    specifier: ^4.5.14
-    version: 4.5.14
+  '@fontsource/jetbrains-mono':
+    specifier: ^4.5.12
+    version: 4.5.12
   '@fontsource/work-sans':
     specifier: ^4.5.14
     version: 4.5.14
@@ -325,6 +328,10 @@ packages:
       '@chakra-ui/spinner': 2.0.13(@chakra-ui/system@2.5.6)(react@18.2.0)
       '@chakra-ui/system': 2.5.6(@emotion/react@11.10.6)(@emotion/styled@11.10.6)(react@18.2.0)
       react: 18.2.0
+    dev: false
+
+  /@chakra-ui/anatomy@2.1.1:
+    resolution: {integrity: sha512-LUHAoqJAgxAqmyckG5bUpBrfEo1FleEyY+1A8hkWciy58gZ+h3GoY9oBpHcdo7XdHPpy3G+3hieK/7i9NLwxAw==}
     dev: false
 
   /@chakra-ui/anatomy@2.1.2:
@@ -2145,8 +2152,8 @@ packages:
     resolution: {integrity: sha512-2I8y+vJVrPfPFJrnRGpao1Qc2Gu7wmYoo5ed2s5zK/DUGgcyY1Yr/xC0YdnKM4pi7rG3HqwW9ehAKUXoTMLdoA==}
     dev: false
 
-  /@fontsource/mulish@4.5.14:
-    resolution: {integrity: sha512-EniB9wVc6hhCY4Vo+d80tOfAgHFIxXaApIuczzRJsqHF55UjncEo4OD/Kyl/LGwLlZ7ya4sf0/N6vJdRMBiwHw==}
+  /@fontsource/jetbrains-mono@4.5.12:
+    resolution: {integrity: sha512-LJF1ala1/u+wXZmESFqIk08FA9yGX4/uAAleCHmXUMgEjvNAYFHUQQ7eK5hQQoBOwh99cU5suTrqYqEkgzwzPA==}
     dev: false
 
   /@fontsource/work-sans@4.5.14:

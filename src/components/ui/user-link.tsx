@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/libs/routes';
 import { Nullish, User } from '@/types';
-import { Button } from '@chakra-ui/react';
+import { Link as ChakraLink } from '@chakra-ui/react';
 
 interface Props {
   user: Nullish<User>;
@@ -9,14 +9,13 @@ interface Props {
 
 function UserLink({ user }: Props) {
   return (
-    <Button
+    <ChakraLink
       as={Link}
       to={`${ROUTES.USERS}/${user?.id}`}
-      colorScheme="teal"
-      variant="link"
+      fontWeight="medium"
     >
       {user?.username}
-    </Button>
+    </ChakraLink>
   );
 }
 
