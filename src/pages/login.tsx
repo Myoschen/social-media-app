@@ -50,14 +50,7 @@ function LoginPage() {
             <FormErrorMessage>{errors.password.message}</FormErrorMessage>
           ) : null}
         </FormControl>
-        <Button
-          mt="4"
-          type="submit"
-          colorScheme="teal"
-          size="md"
-          w="full"
-          isLoading={loading}
-        >
+        <Button mt="4" type="submit" size="md" w="full" isLoading={loading}>
           Log In
         </Button>
       </form>
