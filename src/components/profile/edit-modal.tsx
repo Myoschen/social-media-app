@@ -3,20 +3,8 @@ import { useUpdateProfile } from '@/hooks/user';
 import { User } from '@/types';
 import { ProfileInput, ProfileSchema } from '@/utils/form-schema';
 import {
-  Avatar,
-  Button,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-  Stack,
+    Avatar, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Modal, ModalBody,
+    ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Stack, useColorModeValue
 } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -27,6 +15,7 @@ interface Props {
 }
 
 function EditModal({ user, isOpen, onClose }: Props) {
+  const bgColor = useColorModeValue('gray.50', 'gray.900');
   const {
     register,
     handleSubmit,
@@ -49,8 +38,8 @@ function EditModal({ user, isOpen, onClose }: Props) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Edit Profile</ModalHeader>
+      <ModalContent sx={{ bgColor }}>
+        <ModalHeader fontWeight="semibold">Edit Profile</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -74,22 +63,17 @@ function EditModal({ user, isOpen, onClose }: Props) {
               <FormControl isInvalid={!!errors.username}>
                 <FormLabel>Username</FormLabel>
                 <Input
+                  colorScheme="blue"
                   type="text"
                   placeholder="Username"
                   {...register('username')}
                 />
-                <FormErrorMessage>
-                  {errors.username && errors.username.message}
-                </FormErrorMessage>
+                {errors.username ? (
+                  <FormErrorMessage>{errors.username.message}</FormErrorMessage>
+                ) : null}
               </FormControl>
             </Stack>
-            <Button
-              type="submit"
-              w="full"
-              my="6"
-              colorScheme="teal"
-              isLoading={isLoading}
-            >
+            <Button w="full" my="6" type="submit" isLoading={isLoading}>
               Save
             </Button>
           </form>
