@@ -1,1 +1,1 @@
-export { default as EditModal } from './edit-modal';
+export { default as ProfileSection } from './profile-section';
