@@ -27,7 +27,7 @@ function NewPost() {
   };
 
   return (
-    <Box maxW="720" mx="auto">
+    <Box maxW="720">
       <form onSubmit={handleSubmit(onSubmit)}>
         <HStack justify="space-between">
           <Heading fontWeight="semibold">New Post</Heading>

@@ -1,21 +1,27 @@
 import { useParams } from 'react-router-dom';
 import { CommentList, NewComment } from '@/components/comment';
-import { PostBlock } from '@/components/post';
+import { PostBlock, PostSkeleton } from '@/components/post';
 import { useQueryPost } from '@/hooks/post';
-import { VStack } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
 function PostDetailsPage() {
   const { id } = useParams() as { id: string };
   const { post, isLoading } = useQueryPost(id);
 
-  if (isLoading) return <span>Loading</span>;
+  if (isLoading) {
+    return (
+      <Box w="full" maxW="720" mx="auto">
+        <PostSkeleton />
+      </Box>
+    );
+  }
 
   return (
-    <VStack pt="50">
+    <Box w="full" maxW="720" mx="auto">
       <PostBlock post={post!} />
       <NewComment postId={post?.id!} />
       <CommentList postId={post?.id!} />
-    </VStack>
+    </Box>
   );
 }
 
