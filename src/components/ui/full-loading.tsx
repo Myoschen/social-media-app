@@ -1,11 +1,10 @@
 import { Center, Spinner, useColorModeValue } from '@chakra-ui/react';
 
 function FullLoading() {
-  const bgColor = useColorModeValue('white', '#222');
   const emptyColor = useColorModeValue('gray.50', 'gray.800');
 
   return (
-    <Center minH="100vh" bgColor={bgColor}>
+    <Center minH="100vh">
       <Spinner
         color="blue.400"
         size="lg"

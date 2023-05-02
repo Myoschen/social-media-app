@@ -1,13 +1,17 @@
-import {
-  extendTheme,
-  theme as base,
-  ThemeOverride,
-  ToastProviderProps,
-} from '@chakra-ui/react';
+import { extendTheme, theme as base, ThemeOverride, ToastProviderProps } from '@chakra-ui/react';
+import { mode } from '@chakra-ui/theme-tools';
 import { Button, Menu } from './components';
 
 // customize theme
-const extension = {
+const overrides = {
+  styles: {
+    global: (props) => ({
+      body: {
+        color: mode('gray.700', 'gray.100')(props),
+        bgColor: mode('white', 'gray.900')(props),
+      },
+    }),
+  },
   config: {
     initialColorMode: 'light',
     useSystemColorMode: true,
@@ -142,7 +146,7 @@ const extension = {
   components: { Button, Menu },
 } satisfies ThemeOverride;
 
-const theme = extendTheme(extension);
+const theme = extendTheme(overrides);
 
 // configure toast default options
 const toastOptions = {

@@ -1,60 +1,79 @@
-import { defineStyleConfig } from '@chakra-ui/react';
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react';
+
+const baseStyle = defineStyle({
+  fontWeight: 'medium',
+});
+
+const sizes = {
+  lg: defineStyle({
+    px: '20px',
+    py: '12px',
+    fontSize: '18px',
+  }),
+  md: defineStyle({
+    px: '16px',
+    py: '8px',
+    fontSize: '16px',
+  }),
+  sm: defineStyle({
+    px: '12px',
+    py: '4px',
+    fonSize: '14px',
+  }),
+};
+
+const solid = defineStyle((props) => {
+  const { colorScheme: c } = props;
+  return {
+    bgColor: `${c}.400`,
+    _hover: { bgColor: `${c}.500` },
+    _active: { bgColor: `${c}.600` },
+    _dark: {
+      bgColor: `${c}.700`,
+      _hover: { bgColor: `${c}.800` },
+      _active: { bgColor: `${c}.900` },
+    },
+  };
+});
+
+const ghost = defineStyle((props) => {
+  const { colorScheme: c } = props;
+  return {
+    color: 'gray.700',
+    _hover: { color: `${c}.400`, bgColor: `${c}.50` },
+    _active: { bgColor: `${c}.100` },
+    _dark: {
+      color: 'gray.100',
+      _hover: { color: `${c}.400`, bgColor: 'whiteAlpha.50' },
+      _active: { bgColor: 'whiteAlpha.100' },
+    },
+  };
+});
+
+const outline = defineStyle((props) => {
+  const { colorScheme: c } = props;
+  return {
+    _hover: { color: `${c}.400`, bgColor: `${c}.50` },
+    _active: { bgColor: `${c}.100` },
+    _dark: {
+      _hover: { bgColor: 'whiteAlpha.50' },
+      _active: { bgColor: 'whiteAlpha.100' },
+    },
+  };
+});
 
 const Button = defineStyleConfig({
-  baseStyle: {
-    fontSize: '16px',
-    fontWeight: '500',
-    rounded: 'md',
-  },
-  sizes: {
-    lg: {
-      px: '20px',
-      py: '12px',
-      fontSize: '18px',
-    },
-    md: {
-      px: '16px',
-      py: '8px',
-      fontSize: '16px',
-    },
-    sm: {
-      px: '12px',
-      py: '4px',
-      fonSize: '14px',
-    },
-  },
+  baseStyle,
+  sizes,
   variants: {
-    solid: {
-      color: 'white',
-      bgColor: 'blue.400',
-      _hover: { bgColor: 'blue.500' },
-      _active: { bgColor: 'blue.600' },
-      _dark: {
-        bgColor: 'blue.700',
-        _hover: { bgColor: 'blue.800' },
-        _active: { bgColor: 'blue.900' },
-      },
-    },
-    ghost: {
-      _hover: { color: 'blue.400', bgColor: 'blue.50' },
-      _active: { bgColor: 'blue.100' },
-      _dark: {
-        _hover: { bgColor: 'whiteAlpha.50' },
-        _active: { bgColor: 'whiteAlpha.100' },
-      },
-    },
-    outline: {
-      _hover: { color: 'blue.400', bgColor: 'blue.50' },
-      _active: { bgColor: 'blue.100' },
-      _dark: {
-        _hover: { bgColor: 'whiteAlpha.50' },
-        _active: { bgColor: 'whiteAlpha.100' },
-      },
-    },
+    solid,
+    ghost,
+    outline,
   },
   defaultProps: {
-    variant: 'solid',
     size: 'md',
+    variant: 'solid',
+    colorScheme: 'blue',
   },
 });
 

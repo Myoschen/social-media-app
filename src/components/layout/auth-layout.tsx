@@ -1,13 +1,12 @@
 import { RxMoon, RxSun } from 'react-icons/rx';
 import { Outlet } from 'react-router-dom';
-import { Center, IconButton, useColorMode, useColorModeValue } from '@chakra-ui/react';
+import { Center, IconButton, useColorMode } from '@chakra-ui/react';
 
 function AuthLayout() {
   const { colorMode, toggleColorMode } = useColorMode();
-  const bgColor = useColorModeValue('white', '#222');
 
   return (
-    <Center w="full" h="100vh" bgColor={bgColor}>
+    <Center w="full" h="100vh">
       <Outlet />
       <IconButton
         pos="fixed"
