@@ -22,9 +22,7 @@ interface HeaderProps {
 function Header({ uid, date }: HeaderProps) {
   const bgColor = useColorModeValue('#fafafa', '#202020');
   const borderColor = useColorModeValue('gray.100', 'gray.800');
-  const { user, isLoading } = useQueryUser(uid);
-
-  if (isLoading) return <span>Loading</span>;
+  const { user } = useQueryUser(uid);
 
   return (
     <Flex

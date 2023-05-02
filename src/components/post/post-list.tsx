@@ -15,8 +15,9 @@ function PostList({ posts, isLoading }: Props) {
       <Grid mt="10" maxW="720" mx="auto" gap="4">
         {Array(2)
           .fill(0)
-          .map(() => (
+          .map((_, i) => (
             <Box
+              key={i}
               padding="4"
               border="1px"
               borderColor={borderColor}
