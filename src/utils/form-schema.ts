@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const ValidationSchema = z.object({
-  text: z.string(),
+  text: z.string().min(1),
   username: z
     .string()
     .min(4, { message: 'The username must be 4 characters or more' })
