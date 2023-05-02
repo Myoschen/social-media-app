@@ -29,9 +29,10 @@ const solid = defineStyle((props) => {
     _hover: { bgColor: `${c}.500` },
     _active: { bgColor: `${c}.600` },
     _dark: {
-      bgColor: `${c}.700`,
-      _hover: { bgColor: `${c}.800` },
-      _active: { bgColor: `${c}.900` },
+      color: 'gray.100',
+      bgColor: `${c}.600`,
+      _hover: { bgColor: `${c}.700` },
+      _active: { bgColor: `${c}.800` },
     },
   };
 });
