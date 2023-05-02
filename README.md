@@ -74,11 +74,11 @@ $ pnpm dev
 
 ## :spiral_notepad: Todos ##
 
-- [x] fix firebase database and storage rules.
 - [x] refactor post, comment, user custom hooks.
 - [x] implement light/dark mode.
 - [ ] redesign the overall style of the website.
-- [ ] add landing page.
+- [ ] adjust firebase database and storage rules.
+- [ ] adjust post, comment, user schema.
 - [ ] support multiple languages (i18n).
 
 ## :link: References ##
