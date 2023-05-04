@@ -1,6 +1,6 @@
-import { RxExit, RxHamburgerMenu, RxMoon, RxSun } from 'react-icons/rx';
+import { RxDotsHorizontal, RxExit, RxMoon, RxSun } from 'react-icons/rx';
 import { useLogout } from '@/hooks/auth';
-import { Nullable, User } from '@/types';
+import { User } from '@/types';
 import {
   Flex,
   IconButton,
@@ -13,7 +13,7 @@ import {
 import { Avatar, UserLink } from '../ui';
 
 interface Props {
-  user: Nullable<User>;
+  user: User;
 }
 
 function UserBox({ user }: Props) {
@@ -23,14 +23,14 @@ function UserBox({ user }: Props) {
   return (
     <Flex py="2" justifyContent="space-between" alignItems="center">
       <Flex gap="4" alignItems="center">
-        <Avatar user={user} size="sm" />
-        <UserLink user={user} />
+        <Avatar id={user.id} avatar={user.avatar} size="sm" />
+        <UserLink id={user.id} username={user.username} />
       </Flex>
       <Menu>
         <MenuButton
           as={IconButton}
           aria-label="options"
-          icon={<RxHamburgerMenu />}
+          icon={<RxDotsHorizontal />}
           variant="ghost"
           size="sm"
           sx={{ cursor: 'default' }}

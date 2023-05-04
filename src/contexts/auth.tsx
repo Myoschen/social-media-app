@@ -1,19 +1,14 @@
 import { onAuthStateChanged } from 'firebase/auth';
-import {
-  createContext,
-  Dispatch,
-  ReactNode,
-  useEffect,
-  useReducer,
-} from 'react';
+import { createContext, Dispatch, ReactNode, useEffect, useReducer } from 'react';
 import { FullLoading } from '@/components/ui';
 import { auth } from '@/libs/firebase';
 import { Nullable, User } from '@/types';
 import { getUserDetails } from '@/utils/firebase';
 
-type AuthAction =
+export type AuthAction =
   | { type: 'LOGIN'; payload: User }
   | { type: 'LOGOUT' }
+  | { type: 'UPDATE_AUTH'; payload: Partial<User> }
   | { type: 'CHECK_AUTH'; payload: Nullable<User> };
 
 type AuthState = {
@@ -32,6 +27,9 @@ const authReducer = (state: AuthState, action: AuthAction) => {
       return { ...state, user: action.payload };
     case 'LOGOUT':
       return { ...state, user: null };
+    case 'UPDATE_AUTH':
+      const user = { ...state.user, ...action.payload } as User;
+      return { ...state, user };
     case 'CHECK_AUTH':
       return {
         ...state,
@@ -43,19 +41,22 @@ const authReducer = (state: AuthState, action: AuthAction) => {
   }
 };
 
-type AuthContextType = {
-  state: AuthState;
+type AuthContext = {
+  user: AuthState['user'];
   dispatch: Dispatch<AuthAction>;
 };
 
-const AuthContext = createContext<Nullable<AuthContextType>>(null);
+const AuthCtx = createContext<Nullable<AuthContext>>(null);
 
 interface ProviderProps {
   children: ReactNode;
 }
 
 function AuthProvider({ children }: ProviderProps) {
-  const [state, dispatch] = useReducer(authReducer, initialState);
+  const [{ user, isInitialChecking }, dispatch] = useReducer(
+    authReducer,
+    initialState
+  );
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (credential) => {
@@ -75,10 +76,11 @@ function AuthProvider({ children }: ProviderProps) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ state, dispatch }}>
-      {state.isInitialChecking ? <FullLoading /> : children}
-    </AuthContext.Provider>
+    // show the loading page until user data is loaded
+    <AuthCtx.Provider value={{ user, dispatch }}>
+      {isInitialChecking ? <FullLoading /> : children}
+    </AuthCtx.Provider>
   );
 }
 
-export { AuthProvider, AuthContext };
+export { AuthProvider, AuthCtx };

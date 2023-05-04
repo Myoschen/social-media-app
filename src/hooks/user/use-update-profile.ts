@@ -12,7 +12,7 @@ function useUpdateProfile(uid: string, url: string) {
   const navigate = useNavigate();
   const toast = useToast();
 
-  const updateProfile = async (username: string) => {
+  const updateProfile = async (username: string, bio: string) => {
     setLoading(true);
     try {
       let avatar;
@@ -26,7 +26,7 @@ function useUpdateProfile(uid: string, url: string) {
       }
 
       // update user details
-      await updateDoc(doc(collections.user, uid), { avatar, username });
+      await updateDoc(doc(collections.user, uid), { avatar, username, bio });
 
       toast({
         title: 'Profile updated successfully',

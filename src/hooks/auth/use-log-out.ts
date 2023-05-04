@@ -11,10 +11,7 @@ function useLogout() {
   const [loading, setLoading] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
-  const {
-    state: { user },
-    dispatch,
-  } = useAuth();
+  const { user, dispatch } = useAuth();
 
   const logout = async () => {
     setLoading(true);

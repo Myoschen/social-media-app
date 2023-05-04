@@ -4,7 +4,7 @@ import { collections } from '@/libs/firebase';
 import { Comments } from '@/types';
 import { useToast } from '@chakra-ui/react';
 
-function useQueryComments(postId: string) {
+function useQueryComments(pid: string) {
   const [comments, setComments] = useState<Comments>([]);
   const [isLoading, setIsLoading] = useState(true);
   const toast = useToast();
@@ -13,8 +13,8 @@ function useQueryComments(postId: string) {
     const unsubscribe = onSnapshot(
       query(
         collections.comment,
-        where('postId', '==', postId),
-        orderBy('date', 'asc')
+        where('pid', '==', pid),
+        orderBy('createdAt', 'asc')
       ),
       (snapshot) => {
         if (!snapshot.empty) {
@@ -33,7 +33,7 @@ function useQueryComments(postId: string) {
       }
     );
     return () => unsubscribe();
-  }, [postId]);
+  }, [pid]);
 
   return { comments, isLoading };
 }

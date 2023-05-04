@@ -1,4 +1,9 @@
-import { Box, SkeletonCircle, SkeletonText, useColorModeValue } from '@chakra-ui/react';
+import {
+  Box,
+  SkeletonCircle,
+  SkeletonText,
+  useColorModeValue,
+} from '@chakra-ui/react';
 
 function PostSkeleton() {
   const borderColor = useColorModeValue('gray.50', 'gray.800');
@@ -6,7 +11,7 @@ function PostSkeleton() {
   return (
     <Box
       w="full"
-      maxW="720"
+      maxW="720px"
       mx="auto"
       padding="4"
       border="1px"

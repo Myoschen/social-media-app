@@ -4,14 +4,14 @@ import { collections } from '@/libs/firebase';
 import { User } from '@/types';
 import { useToast } from '@chakra-ui/react';
 
-function useQueryUser(id: string) {
+function useQueryUser(uid: string) {
   const [user, setUser] = useState<User>();
   const [isLoading, setIsLoading] = useState(true);
   const toast = useToast();
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
-      doc(collections.user, id),
+      doc(collections.user, uid),
       (snapshot) => {
         if (snapshot.exists()) {
           setUser(snapshot.data());
@@ -27,7 +27,7 @@ function useQueryUser(id: string) {
       }
     );
     return () => unsubscribe();
-  }, [id]);
+  }, [uid]);
 
   return { user, isLoading };
 }

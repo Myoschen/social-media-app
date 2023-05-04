@@ -1,9 +1,12 @@
+import { Timestamp } from 'firebase/firestore';
+
 interface Comment {
   id: string;
+  pid: string;
   uid: string;
-  postId: string;
-  text: string;
-  date: number;
+  content: string;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
 }
 
 type Comments = Array<Comment>;

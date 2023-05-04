@@ -1,5 +1,5 @@
 import { FirebaseError } from 'firebase/app';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, Timestamp } from 'firebase/firestore';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { collections } from '@/libs/firebase';
@@ -10,16 +10,21 @@ function useAddPost() {
   const [isLoading, setLoading] = useState(false);
   const toast = useToast();
 
-  const addPost = async (post: Partial<Post>) => {
+  const addPost = async ({ uid, content }: Pick<Post, 'uid' | 'content'>) => {
     setLoading(true);
     try {
       const id = nanoid();
-      await setDoc(doc(collections.post, id), {
-        ...post,
+      const newPost: Post = {
         id,
-        date: Date.now(),
-        likes: [] as string[],
-      });
+        uid,
+        content,
+        totalLikes: 0,
+        totalBookmarks: 0,
+        totalComments: 0,
+        createdAt: Timestamp.fromDate(new Date()),
+        updatedAt: Timestamp.fromDate(new Date()),
+      };
+      await setDoc(doc(collections.post, id), newPost);
       toast({
         title: 'Post added successfully',
         status: 'success',

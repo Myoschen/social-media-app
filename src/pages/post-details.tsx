@@ -19,8 +19,8 @@ function PostDetailsPage() {
   return (
     <Box w="full" maxW="720" mx="auto">
       <PostBlock post={post!} />
-      <NewComment postId={post?.id!} />
-      <CommentList postId={post?.id!} />
+      <NewComment pid={post?.id!} />
+      <CommentList pid={post?.id!} />
     </Box>
   );
 }

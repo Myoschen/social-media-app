@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { RxAvatar, RxBell, RxBookmark, RxHome } from 'react-icons/rx';
 import { useAuth } from '@/hooks/auth';
 import { ROUTES } from '@/libs/routes';
+import { User } from '@/types';
 import { Box, Flex, List, useColorModeValue } from '@chakra-ui/react';
 import Logo from './logo';
 import NavLink from './nav-link';
@@ -9,9 +10,7 @@ import UserBox from './user-box';
 
 function Sidebar() {
   const borderColor = useColorModeValue('gray.50', 'gray.800');
-  const {
-    state: { user },
-  } = useAuth();
+  const { user } = useAuth() as { user: User };
 
   const navLinks = useMemo(
     () => [
@@ -59,7 +58,6 @@ function Sidebar() {
         alignItems="stretch"
       >
         <Logo text="Social Media" to={ROUTES.HOME} />
-        {/* nav */}
         <Box as="nav" flexGrow="1">
           <List>
             {navLinks.map(({ icon, text, to }, i) => (
@@ -67,7 +65,6 @@ function Sidebar() {
             ))}
           </List>
         </Box>
-
         <UserBox user={user} />
       </Flex>
     </Flex>

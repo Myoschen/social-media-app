@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const ValidationSchema = z.object({
-  text: z.string().min(1),
+  content: z.string().min(1),
   username: z
     .string()
     .min(4, { message: 'The username must be 4 characters or more' })
@@ -10,6 +10,7 @@ const ValidationSchema = z.object({
       /^[a-zA-Z0-9_]+$/,
       'The username must contain only letters, numbers and underscore (_)'
     ),
+  bio: z.string(),
   email: z.string().email({
     message: 'Invalid email. Please enter a valid email address',
   }),
@@ -36,15 +37,15 @@ const SignUpSchema = ValidationSchema.pick({
   path: ['confirmPassword'],
   message: "Passwords don't match.",
 });
-const PostSchema = ValidationSchema.pick({ text: true });
-const CommentSchema = ValidationSchema.pick({ text: true });
-const ProfileSchema = ValidationSchema.pick({ username: true });
+const PostSchema = ValidationSchema.pick({ content: true });
+const CommentSchema = ValidationSchema.pick({ content: true });
+const ProfileSchema = ValidationSchema.pick({ username: true, bio: true });
 
 type LoginInput = z.infer<typeof LoginSchema>;
 type SignUpInput = z.infer<typeof SignUpSchema>;
+type ProfileInput = z.infer<typeof ProfileSchema>;
 type PostInput = z.infer<typeof PostSchema>;
 type CommentInput = z.infer<typeof CommentSchema>;
-type ProfileInput = z.infer<typeof ProfileSchema>;
 
 export { LoginSchema, SignUpSchema, PostSchema, CommentSchema, ProfileSchema };
 

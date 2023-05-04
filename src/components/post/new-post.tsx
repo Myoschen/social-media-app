@@ -8,26 +8,24 @@ import { Box, Button, Heading, HStack, Textarea } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 function NewPost() {
-  const {
-    state: { user },
-  } = useAuth();
+  const { user } = useAuth();
   const { addPost, isLoading } = useAddPost();
   const { register, handleSubmit, reset } = useForm<PostInput>({
     resolver: zodResolver(PostSchema),
   });
 
-  const onSubmit: SubmitHandler<PostInput> = async (data) => {
+  const onSubmit: SubmitHandler<PostInput> = async ({ content }) => {
     if (user) {
       await addPost({
         uid: user.id,
-        text: data.text,
+        content,
       });
       reset();
     }
   };
 
   return (
-    <Box maxW="720">
+    <Box maxW="720px">
       <form onSubmit={handleSubmit(onSubmit)}>
         <HStack justify="space-between">
           <Heading fontWeight="semibold">New Post</Heading>
@@ -47,7 +45,7 @@ function NewPost() {
           minH="160"
           resize="none"
           placeholder="Create a new post..."
-          {...register('text')}
+          {...register('content')}
         />
       </form>
     </Box>

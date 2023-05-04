@@ -6,9 +6,7 @@ import Sidebar from '../sidebar';
 
 function AppLayout() {
   const location = useLocation();
-  const {
-    state: { user },
-  } = useAuth();
+  const { user } = useAuth();
 
   return user ? (
     <Flex minH="100vh">

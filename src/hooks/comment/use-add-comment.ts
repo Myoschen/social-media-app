@@ -1,27 +1,40 @@
 import { FirebaseError } from 'firebase/app';
-import { doc, setDoc } from 'firebase/firestore';
+import {
+  doc,
+  increment,
+  setDoc,
+  Timestamp,
+  updateDoc,
+} from 'firebase/firestore';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { collections } from '@/libs/firebase';
 import { Comment } from '@/types';
 import { useToast } from '@chakra-ui/react';
 
-type HookParams = Pick<Comment, 'uid' | 'postId'>;
-
-export function useAddComment({ uid, postId }: HookParams) {
+export function useAddComment() {
   const [isLoading, setLoading] = useState(false);
   const toast = useToast();
 
-  const addComment = async (text: string) => {
+  const addComment = async ({
+    uid,
+    pid,
+    content,
+  }: Pick<Comment, 'uid' | 'pid' | 'content'>) => {
     setLoading(true);
     try {
       const id = nanoid();
-      await setDoc(doc(collections.comment, id), {
+      const newComment: Comment = {
         id,
         uid,
-        postId,
-        text,
-        date: Date.now(),
+        pid,
+        content,
+        createdAt: Timestamp.fromDate(new Date()),
+        updatedAt: Timestamp.fromDate(new Date()),
+      };
+      await setDoc(doc(collections.comment, id), newComment);
+      await updateDoc(doc(collections.post, pid), {
+        totalComments: increment(1),
       });
       toast({
         title: 'Comment added successfully',

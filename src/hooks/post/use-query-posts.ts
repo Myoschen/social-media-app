@@ -14,9 +14,9 @@ function useQueryPosts(uid?: string) {
       ? query(
           collections.post,
           where('uid', '==', uid),
-          orderBy('date', 'desc')
+          orderBy('createdAt', 'desc')
         )
-      : query(collections.post, orderBy('date', 'desc'));
+      : query(collections.post, orderBy('createdAt', 'desc'));
     const unsubscribe = onSnapshot(
       q,
       (snapshot) => {

@@ -9,16 +9,14 @@ import {
 import EditModal from './edit-modal';
 
 interface Props {
-  user?: User;
-  postsLength: number;
+  user: User;
+  totalPost: number;
   isLoading: boolean;
 }
 
-function ProfileSection({ user, postsLength, isLoading }: Props) {
+function ProfileSection({ user, totalPost, isLoading }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const {
-    state: { user: auth },
-  } = useAuth();
+  const { user: authUser } = useAuth();
 
   if (isLoading) {
     return (
@@ -30,45 +28,62 @@ function ProfileSection({ user, postsLength, isLoading }: Props) {
   }
 
   return (
-    <Flex p={['4', '6']} pos="relative" align="center" justify="center">
-      <Avatar user={user} size="xl" />
-      <Stack direction="column" ml="10">
-        <HStack>
-          <Text fontSize="2xl">{user?.username}</Text>
-          {auth?.id === user?.id ? (
-            <IconButton
-              icon={<FaEdit />}
-              isRound
-              size="xs"
-              variant="ghost"
-              onClick={onOpen}
-              aria-label="edit profile"
-            />
-          ) : null}
-        </HStack>
-        <Stack gap={{ md: '4' }} direction={{ base: 'column', md: 'row' }}>
-          <Flex align="center" gap="2">
-            <Tag colorScheme="blue">Post</Tag>
-            <Text color="gray.600" fontSize={['xs', 'md']}>
-              {postsLength}
-            </Text>
-          </Flex>
-          <Flex align="center" gap="2">
-            <Tag colorScheme="blue">Likes</Tag>
-            <Text color="gray.600" fontSize={['xs', 'md']}>
-              {10}
-            </Text>
-          </Flex>
-          <Flex align="center" gap="2">
-            <Tag colorScheme="blue">Joined</Tag>
-            <Text whiteSpace="nowrap" color="gray.600" fontSize={['xs', 'md']}>
-              {format(user?.date!, 'MMMM yyyy')}
-            </Text>
-          </Flex>
+    <Box w="full" maxW="720px" mx="auto" pb="10" px="4">
+      <Flex align="center">
+        <Avatar id={user.id} avatar={user.avatar} size="xl" />
+        <Stack direction="column" ml="10">
+          <HStack>
+            <Text fontSize="2xl">{user?.username}</Text>
+            {authUser?.id === user?.id ? (
+              <IconButton
+                icon={<FaEdit />}
+                isRound
+                size="xs"
+                variant="ghost"
+                onClick={onOpen}
+                aria-label="edit profile"
+              />
+            ) : null}
+          </HStack>
+          <Stack gap={{ md: '4' }} direction={{ base: 'column', md: 'row' }}>
+            <Flex align="center" gap="2">
+              <Tag colorScheme="blue">Post</Tag>
+              <Text color="gray.600" fontSize={['xs', 'md']}>
+                {totalPost}
+              </Text>
+            </Flex>
+            <Flex align="center" gap="2">
+              <Tag colorScheme="blue">Likes</Tag>
+              <Text color="gray.600" fontSize={['xs', 'md']}>
+                {user.likes.length}
+              </Text>
+            </Flex>
+            <Flex align="center" gap="2">
+              <Tag colorScheme="blue">Bookmarks</Tag>
+              <Text color="gray.600" fontSize={['xs', 'md']}>
+                {user.bookmarks.length}
+              </Text>
+            </Flex>
+            <Flex align="center" gap="2">
+              <Tag colorScheme="blue">Joined</Tag>
+              <Text
+                whiteSpace="nowrap"
+                color="gray.600"
+                fontSize={['xs', 'md']}
+              >
+                {format(user?.createdAt.toDate() as Date, 'MMMM yyyy')}
+              </Text>
+            </Flex>
+          </Stack>
         </Stack>
-      </Stack>
-      <EditModal user={user} isOpen={isOpen} onClose={onClose} />
-    </Flex>
+        <EditModal user={authUser!} isOpen={isOpen} onClose={onClose} />
+      </Flex>
+      {user?.bio ? (
+        <Text mt="4" fontSize="lg">
+          {user.bio}
+        </Text>
+      ) : null}
+    </Box>
   );
 }
 

@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { AuthContext } from '@/contexts/auth';
+import { AuthCtx } from '@/contexts/auth';
 
 function useAuth() {
-  const context = useContext(AuthContext);
+  const context = useContext(AuthCtx);
 
   if (!context) {
     throw new Error('The useAuth hook must be used in the AuthProvider.');

@@ -15,10 +15,7 @@ function useLogin() {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || ROUTES.HOME;
-  const {
-    state: { user },
-    dispatch,
-  } = useAuth();
+  const { user, dispatch } = useAuth();
 
   const login = async ({ email, password }: LoginInput) => {
     setLoading(true);

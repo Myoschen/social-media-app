@@ -1,18 +1,22 @@
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/libs/routes';
-import { Avatar as ChakraAvatar, AvatarProps as ChakraAvatarProps } from '@chakra-ui/react';
+import { User } from '@/types';
+import {
+  Avatar as ChakraAvatar,
+  AvatarProps as ChakraAvatarProps,
+} from '@chakra-ui/react';
 
-import type { Nullish, User } from '@/types';
 interface AvatarProps extends ChakraAvatarProps {
-  user: Nullish<User>;
+  id: User['id'];
+  avatar: User['avatar'];
 }
 
-function Avatar({ user, ...rest }: AvatarProps) {
+function Avatar({ id, avatar, ...rest }: AvatarProps) {
   return (
     <ChakraAvatar
       as={Link}
-      src={user?.avatar}
-      to={`${ROUTES.USERS}/${user?.id}`}
+      src={avatar}
+      to={`${ROUTES.USERS}/${id}`}
       _hover={{ opacity: 0.8 }}
       {...rest}
     />

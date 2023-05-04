@@ -1,9 +1,14 @@
+import { Timestamp } from 'firebase/firestore';
+
 interface Post {
   id: string;
   uid: string;
-  text: string;
-  likes: string[];
-  date: number;
+  content: string;
+  totalLikes: number;
+  totalBookmarks: number;
+  totalComments: number;
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
 }
 
 type Posts = Array<Post>;

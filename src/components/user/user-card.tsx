@@ -11,7 +11,7 @@ interface Props {
 function UserCard({ user }: Props) {
   return (
     <VStack bg="gray.100" shadow="sm" rounded="md" p="4" spacing="3">
-      <Avatar user={user} />
+      <Avatar id={user.id} avatar={user.avatar} />
       <Tag size="sm" colorScheme="teal">
         {user.username}
       </Tag>

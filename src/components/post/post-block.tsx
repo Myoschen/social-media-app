@@ -1,13 +1,14 @@
 import { formatDistanceToNow } from 'date-fns';
 import { useRef } from 'react';
-import { RxBookmark, RxChatBubble, RxHeart, RxHeartFilled, RxTrash } from 'react-icons/rx';
+import {
+    RxBookmark, RxBookmarkFilled, RxChatBubble, RxHeart, RxHeartFilled, RxTrash
+} from 'react-icons/rx';
 import { Link } from 'react-router-dom';
-import { Avatar, UserLink } from '@/components/ui';
+import { Avatar, FullLoading, UserLink } from '@/components/ui';
 import { useAuth } from '@/hooks/auth';
-import { useQueryComments } from '@/hooks/comment';
-import { useDeletePost, useToggleLikePost } from '@/hooks/post';
+import { useDeletePost, useToggleBookmark, useToggleLike } from '@/hooks/post';
 import { useQueryUser } from '@/hooks/user';
-import { Post } from '@/types';
+import { Post, User } from '@/types';
 import {
     AlertDialog, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent, AlertDialogFooter,
     AlertDialogHeader, AlertDialogOverlay, Box, Button, Flex, HStack, IconButton, Spacer, Text,
@@ -15,14 +16,18 @@ import {
 } from '@chakra-ui/react';
 
 interface HeaderProps {
-  uid: string;
-  date: number;
+  userId: string;
+  date: Date;
 }
 
-function Header({ uid, date }: HeaderProps) {
+function Header({ userId, date }: HeaderProps) {
   const bgColor = useColorModeValue('#fafafa', '#202020');
   const borderColor = useColorModeValue('gray.100', 'gray.800');
-  const { user } = useQueryUser(uid);
+  const { user, isLoading } = useQueryUser(userId);
+
+  if (isLoading || !user) {
+    return <FullLoading />;
+  }
 
   return (
     <Flex
@@ -32,9 +37,9 @@ function Header({ uid, date }: HeaderProps) {
       borderColor={borderColor}
       bgColor={bgColor}
     >
-      <Avatar user={user} />
+      <Avatar id={user.id} avatar={user.avatar} />
       <Box ml="3">
-        <UserLink user={user} />
+        <UserLink id={user.id} username={user.username} />
         <Text fontSize="sm" color="gray.500">
           {formatDistanceToNow(date)} ago
         </Text>
@@ -49,19 +54,14 @@ interface ActionsProps {
 
 function Actions({ post }: ActionsProps) {
   const cancelRef = useRef<HTMLButtonElement>(null);
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const bgColor = useColorModeValue('gray.50', 'gray.900');
-  const {
-    state: { user },
-  } = useAuth();
-  const isLiked = post.likes.includes(user?.id!);
-  const { toggleLike } = useToggleLikePost({
-    id: post.id,
-    isLiked,
-    uid: user?.id!,
-  });
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { user } = useAuth() as { user: User };
+  const isLiked = user.likes.includes(post.id);
+  const isBookmarked = user.bookmarks.includes(post.id);
+  const { toggleLike } = useToggleLike(post.id);
+  const { toggleBookmark } = useToggleBookmark(post.id);
   const { deletePost } = useDeletePost(post.id);
-  const { comments } = useQueryComments(post.id);
 
   return (
     <HStack p="2">
@@ -75,7 +75,7 @@ function Actions({ post }: ActionsProps) {
           isRound
           onClick={toggleLike}
         />
-        <Text>{post.likes.length}</Text>
+        <Text>{post.totalLikes}</Text>
       </HStack>
       <HStack spacing="0.5">
         <IconButton
@@ -88,21 +88,22 @@ function Actions({ post }: ActionsProps) {
           aria-label="comment"
           isRound
         />
-        <Text>{comments?.length}</Text>
+        <Text>{post.totalComments}</Text>
       </HStack>
       <HStack spacing="0.5">
         <IconButton
-          icon={<RxBookmark />}
+          icon={isBookmarked ? <RxBookmarkFilled /> : <RxBookmark />}
           size="sm"
           colorScheme="blue"
           variant="ghost"
           aria-label="comment"
           isRound
+          onClick={toggleBookmark}
         />
-        <Text>{comments?.length}</Text>
+        <Text>{post.totalBookmarks}</Text>
       </HStack>
       <Spacer />
-      {post.uid === user?.id ? (
+      {post.uid === user.id ? (
         <>
           <IconButton
             icon={<RxTrash />}
@@ -161,12 +162,12 @@ function PostBlock({ post }: BlockProps) {
   const borderColor = useColorModeValue('gray.100', 'gray.800');
 
   return (
-    <Box w="full" maxW="720">
+    <Box w="full" maxW="720px">
       <Box borderWidth="1px" borderColor={borderColor} borderRadius="md">
-        <Header uid={post.uid} date={post.date} />
+        <Header userId={post.uid} date={post.createdAt.toDate()} />
         <Box px="4" py="2" minH="120px">
           <Text wordBreak="break-word" fontSize="md">
-            {post.text}
+            {post.content}
           </Text>
         </Box>
         <Actions post={post} />

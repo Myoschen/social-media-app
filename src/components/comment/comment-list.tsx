@@ -2,11 +2,11 @@ import { useQueryComments } from '@/hooks/comment';
 import CommentBlock from './comment-block';
 
 interface Props {
-  postId: string;
+  pid: string;
 }
 
-function CommentList({ postId }: Props) {
-  const { comments, isLoading } = useQueryComments(postId);
+function CommentList({ pid }: Props) {
+  const { comments, isLoading } = useQueryComments(pid);
 
   if (isLoading) return <span>Loading</span>;
 

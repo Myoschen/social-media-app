@@ -1,5 +1,6 @@
+import Void from '@/assets/void.svg';
 import { Posts } from '@/types';
-import { Grid, Text } from '@chakra-ui/react';
+import { AspectRatio, Grid, Image, Text, VStack } from '@chakra-ui/react';
 import PostBlock from './post-block';
 import PostSkeleton from './post-skeleton';
 
@@ -12,11 +13,9 @@ function PostList({ posts, isLoading }: Props) {
   if (isLoading) {
     return (
       <Grid mt="10" maxW="720" gap="4">
-        {Array(2)
-          .fill(0)
-          .map((_, i) => (
-            <PostSkeleton key={i} />
-          ))}
+        {Array.from({ length: 2 }, (_, i) => (
+          <PostSkeleton key={i} />
+        ))}
       </Grid>
     );
   }
@@ -24,9 +23,14 @@ function PostList({ posts, isLoading }: Props) {
   return (
     <Grid mt="10" maxW="720" gap="4">
       {posts?.length === 0 ? (
-        <Text textAlign="center" fontSize="xl">
-          No posts yet... Feeling a little lonely here.
-        </Text>
+        <VStack gap="2">
+          <AspectRatio w="full" maxW="300" ratio={1}>
+            <Image src={Void} alt="no posts" objectFit="cover" />
+          </AspectRatio>
+          <Text textAlign="center" fontSize="xl">
+            No posts yet... Feeling a little lonely here.
+          </Text>
+        </VStack>
       ) : (
         posts?.map((post) => <PostBlock key={post.id} post={post} />)
       )}

@@ -1,8 +1,14 @@
+import { Timestamp } from 'firebase/firestore';
+
 interface User {
   id: string;
   username: string;
   avatar: string;
-  date: number;
+  bio: string;
+  likes: string[];
+  bookmarks: string[];
+  createdAt: Timestamp;
+  updatedAt: Timestamp;
 }
 
 type Users = Array<User>;

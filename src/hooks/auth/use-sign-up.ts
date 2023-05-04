@@ -1,9 +1,11 @@
 import { FirebaseError } from 'firebase/app';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { Timestamp } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '@/libs/firebase';
 import { ROUTES } from '@/libs/routes';
+import { User } from '@/types';
 import { addUserDetails } from '@/utils/firebase';
 import { SignUpInput } from '@/utils/form-schema';
 import { useToast } from '@chakra-ui/react';
@@ -13,10 +15,7 @@ function useSignUp() {
   const [loading, setLoading] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
-  const {
-    state: { user },
-    dispatch,
-  } = useAuth();
+  const { user, dispatch } = useAuth();
 
   const signUp = async ({
     username,
@@ -30,11 +29,15 @@ function useSignUp() {
         email,
         password
       );
-      const user = {
+      const user: User = {
         id: credential.user.uid,
         username: username,
         avatar: '',
-        date: Date.now(),
+        bio: '',
+        likes: [],
+        bookmarks: [],
+        createdAt: Timestamp.fromDate(new Date()),
+        updatedAt: Timestamp.fromDate(new Date()),
       };
       await addUserDetails(credential.user.uid, user);
       dispatch({ type: 'LOGIN', payload: user });
