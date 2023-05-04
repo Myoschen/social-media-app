@@ -1,19 +1,17 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { RxPencil1 } from 'react-icons/rx';
-import { redirect } from 'react-router-dom';
 import { Avatar } from '@/components/ui';
 import { useAuth } from '@/hooks/auth';
 import { useAddComment } from '@/hooks/comment';
-import { ROUTES } from '@/libs/routes';
 import { CommentInput, CommentSchema } from '@/utils/form-schema';
 import { Box, Button, Flex, Input } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-interface NewCommentProps {
+interface Props {
   pid: string;
 }
 
-function NewComment({ pid }: NewCommentProps) {
+function NewComment({ pid }: Props) {
   const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm<CommentInput>({
     resolver: zodResolver(CommentSchema),
@@ -32,7 +30,7 @@ function NewComment({ pid }: NewCommentProps) {
   };
 
   if (!user) {
-    return redirect(ROUTES.LOGIN);
+    throw new Error('User not found');
   }
 
   return (
