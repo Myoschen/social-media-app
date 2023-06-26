@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useLogin } from "@/lib/hooks/auth";
 import { ROUTES } from "@/lib/routes";
-import { LoginInput, LoginSchema } from "@/lib/form-schema";
+import { LoginInput } from "@/lib/form-schema";
 import {
   Box,
   Button,
@@ -14,7 +14,6 @@ import {
   Link as ChakraLink,
   Text,
 } from "@chakra-ui/react";
-import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function LoginPage() {
   const { login, loading } = useLogin();
@@ -22,7 +21,7 @@ export default function LoginPage() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginInput>({ resolver: zodResolver(LoginSchema) });
+  } = useForm<LoginInput>();
 
   const onSubmit: SubmitHandler<LoginInput> = async ({ email, password }) => {
     await login({ email, password });
