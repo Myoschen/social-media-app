@@ -5,28 +5,14 @@ import { useUpdateProfile } from '@/hooks/user';
 import { User } from '@/types';
 import { ProfileInput, ProfileSchema } from '@/utils/form-schema';
 import {
-  Avatar,
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  HStack,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-  Textarea,
-  useColorModeValue,
+    Avatar, Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, HStack, Input, Modal,
+    ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Textarea,
+    useColorModeValue
 } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 interface Props {
-  user?: User;
+  user: User;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -42,13 +28,13 @@ function EditModal({ user, isOpen, onClose }: Props) {
   } = useForm<ProfileInput>({
     resolver: zodResolver(ProfileSchema),
     defaultValues: {
-      username: user?.username,
-      bio: user?.bio,
+      username: user.username,
+      bio: user.bio,
     },
   });
   const { updateProfile, setFile, isLoading, fileURL } = useUpdateProfile(
-    user?.id!,
-    user?.avatar!
+    user.id,
+    user.avatar
   );
 
   const onSubmit: SubmitHandler<ProfileInput> = async ({ username, bio }) => {

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { RxAvatar, RxBell, RxBookmark, RxHome } from 'react-icons/rx';
 import { useAuth } from '@/hooks/auth';
 import { ROUTES } from '@/libs/routes';
-import { User } from '@/types';
+import { assertAuthenticated } from '@/utils/assert';
 import { Box, Flex, List, useColorModeValue } from '@chakra-ui/react';
 import Logo from './logo';
 import NavLink from './nav-link';
@@ -10,7 +10,9 @@ import UserBox from './user-box';
 
 function Sidebar() {
   const borderColor = useColorModeValue('gray.50', 'gray.800');
-  const { user } = useAuth() as { user: User };
+  const { user } = useAuth();
+
+  assertAuthenticated(user);
 
   const navLinks = useMemo(
     () => [
@@ -32,7 +34,7 @@ function Sidebar() {
       {
         icon: <RxAvatar />,
         text: 'Profile',
-        to: `${ROUTES.USERS}/${user?.id}`,
+        to: `${ROUTES.USERS}/${user.id}`,
       },
     ],
     [user]

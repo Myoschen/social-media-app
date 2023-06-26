@@ -1,10 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ROUTES } from '@/libs/routes';
 import { User } from '@/types';
-import {
-  Avatar as ChakraAvatar,
-  AvatarProps as ChakraAvatarProps,
-} from '@chakra-ui/react';
+import { Avatar as ChakraAvatar, AvatarProps as ChakraAvatarProps } from '@chakra-ui/react';
 
 interface AvatarProps extends ChakraAvatarProps {
   id: User['id'];

@@ -6,6 +6,7 @@ import { useAuth } from '@/hooks/auth';
 import { useDeleteComment } from '@/hooks/comment';
 import { useQueryUser } from '@/hooks/user';
 import { Comment } from '@/types';
+import { assertAuthenticated } from '@/utils/assert';
 import {
     AlertDialog, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent, AlertDialogFooter,
     AlertDialogHeader, AlertDialogOverlay, Box, Button, Flex, IconButton, Spacer, Text,
@@ -20,9 +21,11 @@ function CommentBlock({ comment }: Props) {
   const cancelRef = useRef<HTMLButtonElement>(null);
   const { isOpen, onClose, onOpen } = useDisclosure();
   const bgColor = useColorModeValue('gray.50', 'gray.900');
-  const { user: authUser } = useAuth();
+  const { user: auth } = useAuth();
   const { deleteComment } = useDeleteComment();
   const { user, isLoading: isUserLoading } = useQueryUser(comment.uid);
+
+  assertAuthenticated(auth);
 
   if (isUserLoading || !user) {
     return <FullLoading />;
@@ -41,7 +44,7 @@ function CommentBlock({ comment }: Props) {
               </Text>
             </Box>
             <Spacer />
-            {authUser?.id === user.id ? (
+            {auth.id === user.id ? (
               <>
                 <IconButton
                   icon={<RxTrash />}

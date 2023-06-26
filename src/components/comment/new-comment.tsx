@@ -3,6 +3,7 @@ import { RxPencil1 } from 'react-icons/rx';
 import { Avatar } from '@/components/ui';
 import { useAuth } from '@/hooks/auth';
 import { useAddComment } from '@/hooks/comment';
+import { assertAuthenticated } from '@/utils/assert';
 import { CommentInput, CommentSchema } from '@/utils/form-schema';
 import { Box, Button, Flex, Input } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -18,25 +19,21 @@ function NewComment({ pid }: Props) {
   });
   const { addComment, isLoading } = useAddComment();
 
-  const onSubmit: SubmitHandler<CommentInput> = async ({ content }) => {
-    if (user) {
-      await addComment({
-        pid,
-        uid: user.id,
-        content,
-      });
-      reset();
-    }
-  };
+  assertAuthenticated(user);
 
-  if (!user) {
-    throw new Error('User not found');
-  }
+  const onSubmit: SubmitHandler<CommentInput> = async ({ content }) => {
+    await addComment({
+      pid,
+      uid: user.id,
+      content,
+    });
+    reset();
+  };
 
   return (
     <Box maxW="720" w="full" py="6">
       <Flex gap="2" p="4">
-        <Avatar id={user?.id} avatar={user?.avatar} size="sm" />
+        <Avatar id={user.id} avatar={user.avatar} size="sm" />
         <Box flex="1">
           <form onSubmit={handleSubmit(onSubmit)}>
             <Input

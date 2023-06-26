@@ -3,6 +3,7 @@ import { FaEdit } from 'react-icons/fa';
 import { Avatar } from '@/components/ui';
 import { useAuth } from '@/hooks/auth';
 import { User } from '@/types';
+import { assertAuthenticated } from '@/utils/assert';
 import {
     Box, Flex, HStack, IconButton, SkeletonCircle, SkeletonText, Stack, Tag, Text, useDisclosure
 } from '@chakra-ui/react';
@@ -16,7 +17,9 @@ interface Props {
 
 function ProfileSection({ user, totalPost, isLoading }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { user: authUser } = useAuth();
+  const { user: auth } = useAuth();
+
+  assertAuthenticated(auth);
 
   if (isLoading) {
     return (
@@ -34,7 +37,7 @@ function ProfileSection({ user, totalPost, isLoading }: Props) {
         <Stack direction="column" ml="10">
           <HStack>
             <Text fontSize="2xl">{user?.username}</Text>
-            {authUser?.id === user?.id ? (
+            {auth.id === user.id ? (
               <IconButton
                 icon={<FaEdit />}
                 isRound
@@ -71,14 +74,14 @@ function ProfileSection({ user, totalPost, isLoading }: Props) {
                 color="gray.600"
                 fontSize={['xs', 'md']}
               >
-                {format(user?.createdAt.toDate() as Date, 'MMMM yyyy')}
+                {format(user.createdAt.toDate() as Date, 'MMMM yyyy')}
               </Text>
             </Flex>
           </Stack>
         </Stack>
-        <EditModal user={authUser!} isOpen={isOpen} onClose={onClose} />
+        <EditModal user={auth} isOpen={isOpen} onClose={onClose} />
       </Flex>
-      {user?.bio ? (
+      {user.bio ? (
         <Text mt="4" fontSize="lg">
           {user.bio}
         </Text>

@@ -3,6 +3,7 @@ import { RxPaperPlane } from 'react-icons/rx';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useAuth } from '@/hooks/auth';
 import { useAddPost } from '@/hooks/post';
+import { assertAuthenticated } from '@/utils/assert';
 import { PostInput, PostSchema } from '@/utils/form-schema';
 import { Box, Button, Heading, HStack, Textarea } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -14,14 +15,14 @@ function NewPost() {
     resolver: zodResolver(PostSchema),
   });
 
+  assertAuthenticated(user);
+
   const onSubmit: SubmitHandler<PostInput> = async ({ content }) => {
-    if (user) {
-      await addPost({
-        uid: user.id,
-        content,
-      });
-      reset();
-    }
+    await addPost({
+      uid: user.id,
+      content,
+    });
+    reset();
   };
 
   return (

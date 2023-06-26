@@ -8,7 +8,8 @@ import { Avatar, FullLoading, UserLink } from '@/components/ui';
 import { useAuth } from '@/hooks/auth';
 import { useDeletePost, useToggleBookmark, useToggleLike } from '@/hooks/post';
 import { useQueryUser } from '@/hooks/user';
-import { Post, User } from '@/types';
+import { Post } from '@/types';
+import { assertAuthenticated } from '@/utils/assert';
 import {
     AlertDialog, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent, AlertDialogFooter,
     AlertDialogHeader, AlertDialogOverlay, Box, Button, Flex, HStack, IconButton, Spacer, Text,
@@ -56,12 +57,15 @@ function Actions({ post }: ActionsProps) {
   const cancelRef = useRef<HTMLButtonElement>(null);
   const bgColor = useColorModeValue('gray.50', 'gray.900');
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { user } = useAuth() as { user: User };
-  const isLiked = user.likes.includes(post.id);
-  const isBookmarked = user.bookmarks.includes(post.id);
+  const { user } = useAuth();
   const { toggleLike } = useToggleLike(post.id);
   const { toggleBookmark } = useToggleBookmark(post.id);
   const { deletePost } = useDeletePost(post.id);
+
+  assertAuthenticated(user);
+
+  const isLiked = user.likes.includes(post.id);
+  const isBookmarked = user.bookmarks.includes(post.id);
 
   return (
     <HStack p="2">
