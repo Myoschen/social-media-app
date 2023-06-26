@@ -1,6 +1,6 @@
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp } from "firebase/firestore";
 
-interface User {
+export interface User {
   id: string;
   username: string;
   avatar: string;
@@ -11,6 +11,4 @@ interface User {
   updatedAt: Timestamp;
 }
 
-type Users = Array<User>;
-
-export type { User, Users };
+export type Users = Array<User>;

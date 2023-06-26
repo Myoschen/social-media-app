@@ -1,11 +1,11 @@
-import { useQueryComments } from '@/hooks/comment';
-import CommentBlock from './comment-block';
+import { useQueryComments } from "@/lib/hooks/comment";
+import CommentBlock from "./comment-block";
 
 interface Props {
   pid: string;
 }
 
-function CommentList({ pid }: Props) {
+export default function CommentList({ pid }: Props) {
   const { comments, isLoading } = useQueryComments(pid);
 
   if (isLoading) return <span>Loading</span>;
@@ -18,5 +18,3 @@ function CommentList({ pid }: Props) {
     </>
   );
 }
-
-export default CommentList;

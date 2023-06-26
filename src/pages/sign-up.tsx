@@ -1,14 +1,22 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import { useSignUp } from '@/hooks/auth';
-import { ROUTES } from '@/libs/routes';
-import { SignUpInput, SignUpSchema } from '@/utils/form-schema';
+import { SubmitHandler, useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { useSignUp } from "@/lib/hooks/auth";
+import { ROUTES } from "@/lib/routes";
+import { SignUpInput, SignUpSchema } from "@/lib/form-schema";
 import {
-    Box, Button, FormControl, FormErrorMessage, FormLabel, Heading, Input, Link as ChakraLink, Text
-} from '@chakra-ui/react';
-import { zodResolver } from '@hookform/resolvers/zod';
+  Box,
+  Button,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Heading,
+  Input,
+  Link as ChakraLink,
+  Text,
+} from "@chakra-ui/react";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-function SignUpPage() {
+export default function SignUpPage() {
   const { signUp, loading } = useSignUp();
   const {
     register,
@@ -36,7 +44,7 @@ function SignUpPage() {
             colorScheme="blue"
             type="text"
             placeholder="username"
-            {...register('username')}
+            {...register("username")}
           />
           {errors.username ? (
             <FormErrorMessage>{errors.username.message}</FormErrorMessage>
@@ -48,7 +56,7 @@ function SignUpPage() {
             colorScheme="blue"
             type="email"
             placeholder="user@email.com"
-            {...register('email')}
+            {...register("email")}
           />
           {errors.email ? (
             <FormErrorMessage>{errors.email.message}</FormErrorMessage>
@@ -60,7 +68,7 @@ function SignUpPage() {
             colorScheme="blue"
             type="password"
             placeholder="password"
-            {...register('password')}
+            {...register("password")}
           />
           {errors.password ? (
             <FormErrorMessage>{errors.password.message}</FormErrorMessage>
@@ -72,7 +80,7 @@ function SignUpPage() {
             colorScheme="blue"
             type="password"
             placeholder="password"
-            {...register('confirmPassword')}
+            {...register("confirmPassword")}
           />
           {errors.confirmPassword ? (
             <FormErrorMessage>
@@ -93,5 +101,3 @@ function SignUpPage() {
     </Box>
   );
 }
-
-export default SignUpPage;

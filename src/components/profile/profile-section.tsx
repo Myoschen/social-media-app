@@ -1,13 +1,22 @@
-import { format } from 'date-fns';
-import { FaEdit } from 'react-icons/fa';
-import { Avatar } from '@/components/ui';
-import { useAuth } from '@/hooks/auth';
-import { User } from '@/types';
-import { assertAuthenticated } from '@/utils/assert';
+import { format } from "date-fns";
+import { FaEdit } from "react-icons/fa";
+import { Avatar } from "@/components/ui";
+import { useAuth } from "@/lib/hooks/auth";
+import { User } from "@/types";
+import { assertAuthenticated } from "@/lib/hooks/auth";
 import {
-    Box, Flex, HStack, IconButton, SkeletonCircle, SkeletonText, Stack, Tag, Text, useDisclosure
-} from '@chakra-ui/react';
-import EditModal from './edit-modal';
+  Box,
+  Flex,
+  HStack,
+  IconButton,
+  SkeletonCircle,
+  SkeletonText,
+  Stack,
+  Tag,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
+import EditModal from "./edit-modal";
 
 interface Props {
   user: User;
@@ -15,7 +24,7 @@ interface Props {
   isLoading: boolean;
 }
 
-function ProfileSection({ user, totalPost, isLoading }: Props) {
+export default function ProfileSection({ user, totalPost, isLoading }: Props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { user: auth } = useAuth();
 
@@ -48,22 +57,22 @@ function ProfileSection({ user, totalPost, isLoading }: Props) {
               />
             ) : null}
           </HStack>
-          <Stack gap={{ md: '4' }} direction={{ base: 'column', md: 'row' }}>
+          <Stack gap={{ md: "4" }} direction={{ base: "column", md: "row" }}>
             <Flex align="center" gap="2">
               <Tag colorScheme="blue">Post</Tag>
-              <Text color="gray.600" fontSize={['xs', 'md']}>
+              <Text color="gray.600" fontSize={["xs", "md"]}>
                 {totalPost}
               </Text>
             </Flex>
             <Flex align="center" gap="2">
               <Tag colorScheme="blue">Likes</Tag>
-              <Text color="gray.600" fontSize={['xs', 'md']}>
+              <Text color="gray.600" fontSize={["xs", "md"]}>
                 {user.likes.length}
               </Text>
             </Flex>
             <Flex align="center" gap="2">
               <Tag colorScheme="blue">Bookmarks</Tag>
-              <Text color="gray.600" fontSize={['xs', 'md']}>
+              <Text color="gray.600" fontSize={["xs", "md"]}>
                 {user.bookmarks.length}
               </Text>
             </Flex>
@@ -72,9 +81,9 @@ function ProfileSection({ user, totalPost, isLoading }: Props) {
               <Text
                 whiteSpace="nowrap"
                 color="gray.600"
-                fontSize={['xs', 'md']}
+                fontSize={["xs", "md"]}
               >
-                {format(user.createdAt.toDate() as Date, 'MMMM yyyy')}
+                {format(user.createdAt.toDate() as Date, "MMMM yyyy")}
               </Text>
             </Flex>
           </Stack>
@@ -89,5 +98,3 @@ function ProfileSection({ user, totalPost, isLoading }: Props) {
     </Box>
   );
 }
-
-export default ProfileSection;

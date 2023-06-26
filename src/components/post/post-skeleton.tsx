@@ -3,10 +3,10 @@ import {
   SkeletonCircle,
   SkeletonText,
   useColorModeValue,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
-function PostSkeleton() {
-  const borderColor = useColorModeValue('gray.50', 'gray.800');
+export default function PostSkeleton() {
+  const borderColor = useColorModeValue("gray.50", "gray.800");
 
   return (
     <Box
@@ -23,5 +23,3 @@ function PostSkeleton() {
     </Box>
   );
 }
-
-export default PostSkeleton;

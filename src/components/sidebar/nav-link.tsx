@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { Button, ListItem } from '@chakra-ui/react';
+import { Link } from "react-router-dom";
+import { Button, ListItem } from "@chakra-ui/react";
 
 interface Props {
   to: string;
@@ -7,7 +7,7 @@ interface Props {
   text: string;
 }
 
-function NavLink({ to, icon, text }: Props) {
+export default function NavLink({ to, icon, text }: Props) {
   return (
     <ListItem>
       <Button
@@ -24,5 +24,3 @@ function NavLink({ to, icon, text }: Props) {
     </ListItem>
   );
 }
-
-export default NavLink;

@@ -1,8 +1,8 @@
-import { RxMoon, RxSun } from 'react-icons/rx';
-import { Outlet } from 'react-router-dom';
-import { Center, IconButton, useColorMode } from '@chakra-ui/react';
+import { RxMoon, RxSun } from "react-icons/rx";
+import { Outlet } from "react-router-dom";
+import { Center, IconButton, useColorMode } from "@chakra-ui/react";
 
-function AuthLayout() {
+export default function AuthLayout() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
@@ -14,12 +14,10 @@ function AuthLayout() {
         top="3"
         size="sm"
         variant="ghost"
-        icon={colorMode === 'light' ? <RxMoon /> : <RxSun />}
+        icon={colorMode === "light" ? <RxMoon /> : <RxSun />}
         onClick={toggleColorMode}
         aria-label="dark mode"
       />
     </Center>
   );
 }
-
-export default AuthLayout;

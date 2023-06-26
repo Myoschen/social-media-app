@@ -1,6 +1,6 @@
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp } from "firebase/firestore";
 
-interface Post {
+export interface Post {
   id: string;
   uid: string;
   content: string;
@@ -11,6 +11,4 @@ interface Post {
   updatedAt: Timestamp;
 }
 
-type Posts = Array<Post>;
-
-export type { Post, Posts };
+export type Posts = Array<Post>;

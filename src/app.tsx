@@ -1,8 +1,8 @@
-import { RouterProvider } from 'react-router-dom';
-import { AuthProvider } from '@/contexts/auth';
-import { router } from '@/libs/routes';
-import { theme, toastOptions } from '@/theme';
-import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
+import { RouterProvider } from "react-router-dom";
+import { AuthProvider } from "@/store/auth";
+import { router } from "@/lib/routes";
+import { theme, toastOptions } from "@/lib/theme";
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 
 function App() {
   return (

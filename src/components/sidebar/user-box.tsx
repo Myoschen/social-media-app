@@ -1,6 +1,6 @@
-import { RxDotsHorizontal, RxExit, RxMoon, RxSun } from 'react-icons/rx';
-import { useLogout } from '@/hooks/auth';
-import { User } from '@/types';
+import { RxDotsHorizontal, RxExit, RxMoon, RxSun } from "react-icons/rx";
+import { useLogout } from "@/lib/hooks/auth";
+import { User } from "@/types";
 import {
   Flex,
   IconButton,
@@ -9,14 +9,14 @@ import {
   MenuItem,
   MenuList,
   useColorMode,
-} from '@chakra-ui/react';
-import { Avatar, UserLink } from '../ui';
+} from "@chakra-ui/react";
+import { Avatar, UserLink } from "../ui";
 
 interface Props {
   user: User;
 }
 
-function UserBox({ user }: Props) {
+export default function UserBox({ user }: Props) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { logout, loading } = useLogout();
 
@@ -33,11 +33,11 @@ function UserBox({ user }: Props) {
           icon={<RxDotsHorizontal />}
           variant="ghost"
           size="sm"
-          sx={{ cursor: 'default' }}
+          sx={{ cursor: "default" }}
         />
         <MenuList>
           <MenuItem
-            icon={colorMode === 'light' ? <RxMoon /> : <RxSun />}
+            icon={colorMode === "light" ? <RxMoon /> : <RxSun />}
             onClick={toggleColorMode}
           >
             Dark mode
@@ -50,4 +50,3 @@ function UserBox({ user }: Props) {
     </Flex>
   );
 }
-export default UserBox;

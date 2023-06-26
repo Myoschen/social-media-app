@@ -1,20 +1,42 @@
-import { formatDistanceToNow } from 'date-fns';
-import { useRef } from 'react';
+import { formatDistanceToNow } from "date-fns";
+import { useRef } from "react";
 import {
-    RxBookmark, RxBookmarkFilled, RxChatBubble, RxHeart, RxHeartFilled, RxTrash
-} from 'react-icons/rx';
-import { Link } from 'react-router-dom';
-import { Avatar, FullLoading, UserLink } from '@/components/ui';
-import { useAuth } from '@/hooks/auth';
-import { useDeletePost, useToggleBookmark, useToggleLike } from '@/hooks/post';
-import { useQueryUser } from '@/hooks/user';
-import { Post } from '@/types';
-import { assertAuthenticated } from '@/utils/assert';
+  RxBookmark,
+  RxBookmarkFilled,
+  RxChatBubble,
+  RxHeart,
+  RxHeartFilled,
+  RxTrash,
+} from "react-icons/rx";
+import { Link } from "react-router-dom";
+import { Avatar, FullLoading, UserLink } from "@/components/ui";
+import { useAuth } from "@/lib/hooks/auth";
 import {
-    AlertDialog, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent, AlertDialogFooter,
-    AlertDialogHeader, AlertDialogOverlay, Box, Button, Flex, HStack, IconButton, Spacer, Text,
-    useColorModeValue, useDisclosure
-} from '@chakra-ui/react';
+  useDeletePost,
+  useToggleBookmark,
+  useToggleLikePost,
+} from "@/lib/hooks/post";
+import { useQueryUser } from "@/lib/hooks/user";
+import { Post } from "@/types";
+import { assertAuthenticated } from "@/lib/hooks/auth";
+import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogCloseButton,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  Box,
+  Button,
+  Flex,
+  HStack,
+  IconButton,
+  Spacer,
+  Text,
+  useColorModeValue,
+  useDisclosure,
+} from "@chakra-ui/react";
 
 interface HeaderProps {
   userId: string;
@@ -22,8 +44,8 @@ interface HeaderProps {
 }
 
 function Header({ userId, date }: HeaderProps) {
-  const bgColor = useColorModeValue('#fafafa', '#202020');
-  const borderColor = useColorModeValue('gray.100', 'gray.800');
+  const bgColor = useColorModeValue("#fafafa", "#202020");
+  const borderColor = useColorModeValue("gray.100", "gray.800");
   const { user, isLoading } = useQueryUser(userId);
 
   if (isLoading || !user) {
@@ -55,10 +77,10 @@ interface ActionsProps {
 
 function Actions({ post }: ActionsProps) {
   const cancelRef = useRef<HTMLButtonElement>(null);
-  const bgColor = useColorModeValue('gray.50', 'gray.900');
+  const bgColor = useColorModeValue("gray.50", "gray.900");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { user } = useAuth();
-  const { toggleLike } = useToggleLike(post.id);
+  const { toggleLike } = useToggleLikePost(post.id);
   const { toggleBookmark } = useToggleBookmark(post.id);
   const { deletePost } = useDeletePost(post.id);
 
@@ -162,8 +184,8 @@ interface BlockProps {
   post: Post;
 }
 
-function PostBlock({ post }: BlockProps) {
-  const borderColor = useColorModeValue('gray.100', 'gray.800');
+export default function PostBlock({ post }: BlockProps) {
+  const borderColor = useColorModeValue("gray.100", "gray.800");
 
   return (
     <Box w="full" maxW="720px">
@@ -179,5 +201,3 @@ function PostBlock({ post }: BlockProps) {
     </Box>
   );
 }
-
-export default PostBlock;

@@ -1,15 +1,15 @@
-import { useMemo } from 'react';
-import { RxAvatar, RxBell, RxBookmark, RxHome } from 'react-icons/rx';
-import { useAuth } from '@/hooks/auth';
-import { ROUTES } from '@/libs/routes';
-import { assertAuthenticated } from '@/utils/assert';
-import { Box, Flex, List, useColorModeValue } from '@chakra-ui/react';
-import Logo from './logo';
-import NavLink from './nav-link';
-import UserBox from './user-box';
+import { useMemo } from "react";
+import { RxAvatar, RxBell, RxBookmark, RxHome } from "react-icons/rx";
+import { useAuth } from "@/lib/hooks/auth";
+import { ROUTES } from "@/lib/routes";
+import { assertAuthenticated } from "@/lib/hooks/auth";
+import { Box, Flex, List, useColorModeValue } from "@chakra-ui/react";
+import Logo from "./logo";
+import NavLink from "./nav-link";
+import UserBox from "./user-box";
 
-function Sidebar() {
-  const borderColor = useColorModeValue('gray.50', 'gray.800');
+export default function Sidebar() {
+  const borderColor = useColorModeValue("gray.50", "gray.800");
   const { user } = useAuth();
 
   assertAuthenticated(user);
@@ -18,22 +18,22 @@ function Sidebar() {
     () => [
       {
         icon: <RxHome />,
-        text: 'Home',
+        text: "Home",
         to: ROUTES.HOME,
       },
       {
         icon: <RxBell />,
-        text: 'Notifications',
+        text: "Notifications",
         to: ROUTES.HOME,
       },
       {
         icon: <RxBookmark />,
-        text: 'Saves',
+        text: "Saves",
         to: ROUTES.HOME,
       },
       {
         icon: <RxAvatar />,
-        text: 'Profile',
+        text: "Profile",
         to: `${ROUTES.USERS}/${user.id}`,
       },
     ],
@@ -72,5 +72,3 @@ function Sidebar() {
     </Flex>
   );
 }
-
-export default Sidebar;

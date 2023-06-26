@@ -1,26 +1,38 @@
-import { formatDistanceToNow } from 'date-fns';
-import { useRef } from 'react';
-import { RxTrash } from 'react-icons/rx';
-import { Avatar, FullLoading, UserLink } from '@/components/ui';
-import { useAuth } from '@/hooks/auth';
-import { useDeleteComment } from '@/hooks/comment';
-import { useQueryUser } from '@/hooks/user';
-import { Comment } from '@/types';
-import { assertAuthenticated } from '@/utils/assert';
+import { formatDistanceToNow } from "date-fns";
+import { useRef } from "react";
+import { RxTrash } from "react-icons/rx";
+import { Avatar, FullLoading, UserLink } from "@/components/ui";
+import { useAuth } from "@/lib/hooks/auth";
+import { useDeleteComment } from "@/lib/hooks/comment";
+import { useQueryUser } from "@/lib/hooks/user";
+import { Comment } from "@/types";
+import { assertAuthenticated } from "@/lib/hooks/auth";
 import {
-    AlertDialog, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent, AlertDialogFooter,
-    AlertDialogHeader, AlertDialogOverlay, Box, Button, Flex, IconButton, Spacer, Text,
-    useColorModeValue, useDisclosure
-} from '@chakra-ui/react';
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogCloseButton,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  Box,
+  Button,
+  Flex,
+  IconButton,
+  Spacer,
+  Text,
+  useColorModeValue,
+  useDisclosure,
+} from "@chakra-ui/react";
 
 interface Props {
   comment: Comment;
 }
 
-function CommentBlock({ comment }: Props) {
+export default function CommentBlock({ comment }: Props) {
   const cancelRef = useRef<HTMLButtonElement>(null);
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const bgColor = useColorModeValue('gray.50', 'gray.900');
+  const bgColor = useColorModeValue("gray.50", "gray.900");
   const { user: auth } = useAuth();
   const { deleteComment } = useDeleteComment();
   const { user, isLoading: isUserLoading } = useQueryUser(comment.uid);
@@ -101,5 +113,3 @@ function CommentBlock({ comment }: Props) {
     </Box>
   );
 }
-
-export default CommentBlock;

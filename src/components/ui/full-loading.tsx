@@ -1,7 +1,7 @@
-import { Center, Spinner, useColorModeValue } from '@chakra-ui/react';
+import { Center, Spinner, useColorModeValue } from "@chakra-ui/react";
 
-function FullLoading() {
-  const emptyColor = useColorModeValue('gray.50', 'gray.800');
+export default function FullLoading() {
+  const emptyColor = useColorModeValue("gray.50", "gray.800");
 
   return (
     <Center minH="100vh">
@@ -14,5 +14,3 @@ function FullLoading() {
     </Center>
   );
 }
-
-export default FullLoading;

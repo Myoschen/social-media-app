@@ -1,8 +1,8 @@
-import { useQueryUsers } from '@/hooks/user';
-import { SimpleGrid, Text } from '@chakra-ui/react';
-import { UserCard } from '@/components/user';
+import { useQueryUsers } from "@/lib/hooks/user";
+import { SimpleGrid, Text } from "@chakra-ui/react";
+import { UserCard } from "@/components/user";
 
-function AllUsersPage() {
+export default function AllUsersPage() {
   const { users, isLoading } = useQueryUsers();
 
   if (isLoading) return <Text>Loading</Text>;
@@ -15,5 +15,3 @@ function AllUsersPage() {
     </SimpleGrid>
   );
 }
-
-export default AllUsersPage;

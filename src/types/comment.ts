@@ -1,6 +1,6 @@
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp } from "firebase/firestore";
 
-interface Comment {
+export interface Comment {
   id: string;
   pid: string;
   uid: string;
@@ -9,6 +9,4 @@ interface Comment {
   updatedAt: Timestamp;
 }
 
-type Comments = Array<Comment>;
-
-export type { Comment, Comments };
+export type Comments = Array<Comment>;

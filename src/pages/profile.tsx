@@ -1,12 +1,12 @@
-import { useParams } from 'react-router-dom';
-import PostList from '@/components/post/post-list';
-import ProfileSection from '@/components/profile/profile-section';
-import { FullLoading } from '@/components/ui';
-import { useQueryPosts } from '@/hooks/post';
-import { useQueryUser } from '@/hooks/user';
-import { Box, Divider } from '@chakra-ui/react';
+import { useParams } from "react-router-dom";
+import PostList from "@/components/post/post-list";
+import ProfileSection from "@/components/profile/profile-section";
+import { FullLoading } from "@/components/ui";
+import { useQueryPosts } from "@/lib/hooks/post";
+import { useQueryUser } from "@/lib/hooks/user";
+import { Box, Divider } from "@chakra-ui/react";
 
-function ProfilePage() {
+export default function ProfilePage() {
   const { id } = useParams() as { id: string };
   const { posts, isLoading: isPostLoading } = useQueryPosts(id);
   const { user, isLoading: isUserLoading } = useQueryUser(id);
@@ -16,7 +16,7 @@ function ProfilePage() {
   }
 
   if (!user) {
-    throw new Error('User not found!');
+    throw new Error("User not found!");
   }
 
   return (
@@ -33,5 +33,3 @@ function ProfilePage() {
     </Box>
   );
 }
-
-export default ProfilePage;

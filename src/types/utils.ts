@@ -1,5 +1,3 @@
-type Nullable<T> = T | null;
+export type Nullable<T> = T | null;
 
-type Nullish<T> = T | undefined | null;
-
-export type { Nullable, Nullish };
+export type Nullish<T> = T | undefined | null;

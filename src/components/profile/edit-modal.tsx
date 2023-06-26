@@ -1,15 +1,29 @@
-import { useRef } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import TextareaAutosize from 'react-textarea-autosize';
-import { useUpdateProfile } from '@/hooks/user';
-import { User } from '@/types';
-import { ProfileInput, ProfileSchema } from '@/utils/form-schema';
+import { useRef } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import TextareaAutosize from "react-textarea-autosize";
+import { useUpdateProfile } from "@/lib/hooks/user";
+import { User } from "@/types";
+import { ProfileInput, ProfileSchema } from "@/lib/form-schema";
 import {
-    Avatar, Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, HStack, Input, Modal,
-    ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Textarea,
-    useColorModeValue
-} from '@chakra-ui/react';
-import { zodResolver } from '@hookform/resolvers/zod';
+  Avatar,
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  HStack,
+  Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  Textarea,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 interface Props {
   user: User;
@@ -17,9 +31,9 @@ interface Props {
   onClose: () => void;
 }
 
-function EditModal({ user, isOpen, onClose }: Props) {
+export default function EditModal({ user, isOpen, onClose }: Props) {
   const uploadRef = useRef<HTMLInputElement>(null);
-  const bgColor = useColorModeValue('gray.50', 'gray.900');
+  const bgColor = useColorModeValue("gray.50", "gray.900");
   const {
     register,
     handleSubmit,
@@ -75,7 +89,7 @@ function EditModal({ user, isOpen, onClose }: Props) {
                         setFile(e.target.files[0]);
                       }
                     }}
-                    sx={{ display: 'none' }}
+                    sx={{ display: "none" }}
                   />
                 </FormControl>
               </Flex>
@@ -87,7 +101,7 @@ function EditModal({ user, isOpen, onClose }: Props) {
                   type="text"
                   placeholder="username"
                   colorScheme="blue"
-                  {...register('username')}
+                  {...register("username")}
                 />
                 {errors.username ? (
                   <FormErrorMessage>{errors.username.message}</FormErrorMessage>
@@ -100,7 +114,7 @@ function EditModal({ user, isOpen, onClose }: Props) {
                   minH="120"
                   resize="none"
                   placeholder="bio"
-                  {...register('bio')}
+                  {...register("bio")}
                 />
                 {errors.bio ? (
                   <FormErrorMessage>{errors.bio.message}</FormErrorMessage>
@@ -134,5 +148,3 @@ function EditModal({ user, isOpen, onClose }: Props) {
     </Modal>
   );
 }
-
-export default EditModal;

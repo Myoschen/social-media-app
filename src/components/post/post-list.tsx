@@ -1,15 +1,15 @@
-import Void from '@/assets/void.svg';
-import { Posts } from '@/types';
-import { AspectRatio, Grid, Image, Text, VStack } from '@chakra-ui/react';
-import PostBlock from './post-block';
-import PostSkeleton from './post-skeleton';
+import Void from "@/assets/void.svg";
+import { Posts } from "@/types";
+import { AspectRatio, Grid, Image, Text, VStack } from "@chakra-ui/react";
+import PostBlock from "./post-block";
+import PostSkeleton from "./post-skeleton";
 
 interface Props {
   posts?: Posts;
   isLoading: boolean;
 }
 
-function PostList({ posts, isLoading }: Props) {
+export default function PostList({ posts, isLoading }: Props) {
   if (isLoading) {
     return (
       <Grid mt="10" maxW="720" gap="4">
@@ -37,5 +37,3 @@ function PostList({ posts, isLoading }: Props) {
     </Grid>
   );
 }
-
-export default PostList;

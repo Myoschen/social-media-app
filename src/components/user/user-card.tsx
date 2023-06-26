@@ -1,14 +1,14 @@
-import { Link } from 'react-router-dom';
-import { Avatar } from '@/components/ui';
-import { ROUTES } from '@/libs/routes';
-import { User } from '@/types';
-import { Button, Tag, VStack } from '@chakra-ui/react';
+import { Link } from "react-router-dom";
+import { Avatar } from "@/components/ui";
+import { ROUTES } from "@/lib/routes";
+import { User } from "@/types";
+import { Button, Tag, VStack } from "@chakra-ui/react";
 
 interface Props {
   user: User;
 }
 
-function UserCard({ user }: Props) {
+export default function UserCard({ user }: Props) {
   return (
     <VStack bg="gray.100" shadow="sm" rounded="md" p="4" spacing="3">
       <Avatar id={user.id} avatar={user.avatar} />
@@ -27,5 +27,3 @@ function UserCard({ user }: Props) {
     </VStack>
   );
 }
-
-export default UserCard;

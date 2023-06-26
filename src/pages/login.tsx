@@ -1,14 +1,22 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import { useLogin } from '@/hooks/auth';
-import { ROUTES } from '@/libs/routes';
-import { LoginInput, LoginSchema } from '@/utils/form-schema';
+import { SubmitHandler, useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { useLogin } from "@/lib/hooks/auth";
+import { ROUTES } from "@/lib/routes";
+import { LoginInput, LoginSchema } from "@/lib/form-schema";
 import {
-    Box, Button, FormControl, FormErrorMessage, FormLabel, Heading, Input, Link as ChakraLink, Text
-} from '@chakra-ui/react';
-import { zodResolver } from '@hookform/resolvers/zod';
+  Box,
+  Button,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Heading,
+  Input,
+  Link as ChakraLink,
+  Text,
+} from "@chakra-ui/react";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-function LoginPage() {
+export default function LoginPage() {
   const { login, loading } = useLogin();
   const {
     register,
@@ -32,7 +40,7 @@ function LoginPage() {
             colorScheme="blue"
             type="email"
             placeholder="your email..."
-            {...register('email')}
+            {...register("email")}
           />
           {errors.email ? (
             <FormErrorMessage>{errors.email.message}</FormErrorMessage>
@@ -44,7 +52,7 @@ function LoginPage() {
             colorScheme="blue"
             type="password"
             placeholder="password..."
-            {...register('password')}
+            {...register("password")}
           />
           {errors.password ? (
             <FormErrorMessage>{errors.password.message}</FormErrorMessage>
@@ -63,5 +71,3 @@ function LoginPage() {
     </Box>
   );
 }
-
-export default LoginPage;

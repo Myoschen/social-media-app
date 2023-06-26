@@ -1,18 +1,18 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { RxPencil1 } from 'react-icons/rx';
-import { Avatar } from '@/components/ui';
-import { useAuth } from '@/hooks/auth';
-import { useAddComment } from '@/hooks/comment';
-import { assertAuthenticated } from '@/utils/assert';
-import { CommentInput, CommentSchema } from '@/utils/form-schema';
-import { Box, Button, Flex, Input } from '@chakra-ui/react';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { SubmitHandler, useForm } from "react-hook-form";
+import { RxPencil1 } from "react-icons/rx";
+import { Avatar } from "@/components/ui";
+import { useAuth } from "@/lib/hooks/auth";
+import { useAddComment } from "@/lib/hooks/comment";
+import { assertAuthenticated } from "@/lib/hooks/auth";
+import { CommentInput, CommentSchema } from "@/lib/form-schema";
+import { Box, Button, Flex, Input } from "@chakra-ui/react";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 interface Props {
   pid: string;
 }
 
-function NewComment({ pid }: Props) {
+export default function NewComment({ pid }: Props) {
   const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm<CommentInput>({
     resolver: zodResolver(CommentSchema),
@@ -40,7 +40,7 @@ function NewComment({ pid }: Props) {
               size="sm"
               variant="flushed"
               placeholder="Write comment..."
-              {...register('content')}
+              {...register("content")}
             />
             <Flex pt="2">
               <Button
@@ -60,5 +60,3 @@ function NewComment({ pid }: Props) {
     </Box>
   );
 }
-
-export default NewComment;

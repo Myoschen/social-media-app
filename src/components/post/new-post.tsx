@@ -1,14 +1,14 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { RxPaperPlane } from 'react-icons/rx';
-import TextareaAutosize from 'react-textarea-autosize';
-import { useAuth } from '@/hooks/auth';
-import { useAddPost } from '@/hooks/post';
-import { assertAuthenticated } from '@/utils/assert';
-import { PostInput, PostSchema } from '@/utils/form-schema';
-import { Box, Button, Heading, HStack, Textarea } from '@chakra-ui/react';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { SubmitHandler, useForm } from "react-hook-form";
+import { RxPaperPlane } from "react-icons/rx";
+import TextareaAutosize from "react-textarea-autosize";
+import { useAuth } from "@/lib/hooks/auth";
+import { useAddPost } from "@/lib/hooks/post";
+import { assertAuthenticated } from "@/lib/hooks/auth";
+import { PostInput, PostSchema } from "@/lib/form-schema";
+import { Box, Button, Heading, HStack, Textarea } from "@chakra-ui/react";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-function NewPost() {
+export default function NewPost() {
   const { user } = useAuth();
   const { addPost, isLoading } = useAddPost();
   const { register, handleSubmit, reset } = useForm<PostInput>({
@@ -46,11 +46,9 @@ function NewPost() {
           minH="160"
           resize="none"
           placeholder="Create a new post..."
-          {...register('content')}
+          {...register("content")}
         />
       </form>
     </Box>
   );
 }
-
-export default NewPost;

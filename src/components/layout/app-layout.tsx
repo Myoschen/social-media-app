@@ -1,10 +1,10 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { useAuth } from '@/hooks/auth';
-import { ROUTES } from '@/libs/routes';
-import { Box, Flex } from '@chakra-ui/react';
-import Sidebar from '../sidebar';
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { useAuth } from "@/lib/hooks/auth";
+import { ROUTES } from "@/lib/routes";
+import { Box, Flex } from "@chakra-ui/react";
+import Sidebar from "../sidebar";
 
-function AppLayout() {
+export default function AppLayout() {
   const location = useLocation();
   const { user } = useAuth();
 
@@ -19,5 +19,3 @@ function AppLayout() {
     <Navigate to={ROUTES.LOGIN} state={{ from: location }} />
   );
 }
-
-export default AppLayout;
